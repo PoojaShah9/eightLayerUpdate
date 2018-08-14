@@ -1,0 +1,23 @@
+.modal-body {
+  min-height: 95px;
+  margin-left: 52px;
+}
+.rating {
+  float:left;
+}
+.quizeDialog{
+
+  position: absolute !important;
+  top: 30% !important;
+  left: 30% !important
+}
+.modal-title{
+
+  color: white;
+  font-size: 19px !important;
+}
+.rating-image{
+  width: 30px;
+  height: 30px;
+  margin-left: 5px;
+}

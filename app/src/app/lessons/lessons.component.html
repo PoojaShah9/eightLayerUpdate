@@ -1,0 +1,74 @@
+<app-child-component></app-child-component>
+<div *ngIf="showSpinner">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<!-- MAIN PANEL -->
+<div id="main" role="main">
+  <!-- MAIN CONTENT -->
+  <div id="content">
+    <div class="row">
+      <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+        <h1 class="page-title txt-color-blueDark"><i class="fa-fw fa fa-graduation-cap"></i> Lessons</h1>
+      </div>
+    </div>
+    <section>
+      <!-- row -->
+      <div class="row">
+        <!-- NEW WIDGET START -->
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <!-- widget content -->
+          <div class="widget-body">
+            <div class="row padding-10">
+              <div class="table-responsive padding-10">
+                <table class="table table-bordered text-center">
+                  <thead>
+                  <tr>
+
+                    <th>Chapters</th>
+                    <th>Lesson Count</th>
+                    <!-- <th></th> -->
+                  </tr>
+                  </thead>
+                  <tbody *ngFor="let lessData of lessenDatas?.data; let i=index">
+                  <tr>
+
+                    <td>{{lessData.chapters_name}}</td>
+                    <td>{{lessData.lesson_count}}</td>
+                    <!-- <td>
+                        <button type="button" class="btn btn-labeled btn-primary bg-color-blue">
+                            <span class="btn-label">
+                                <i class="fa fa-edit"></i>
+                            </span>Edit
+                        </button>
+                     </td> -->
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="m-t-10 m-r-10 text-right btn-group-box">
+                <button type="button" routerLink="/chapter" class="btn btn-labeled btn-primary">
+                                    <span class="btn-label">
+                                        <i class="fa fa-plus"></i>
+                                    </span>Chapters List
+                </button>
+                <!-- <button type="button" class="btn btn-labeled btn-primary bg-color-blue">
+                    <span class="btn-label">
+                        <i class="fa fa-edit"></i>
+                    </span>Edit
+                </button> -->
+              </div>
+
+            </div>
+
+          </div>
+          <!-- end widget content -->
+        </article>
+        <!-- WIDGET END -->
+      </div>
+      <!-- end row -->
+    </section>
+
+  </div>
+  <!-- END MAIN CONTENT -->
+</div>
+<!-- END MAIN PANEL -->
