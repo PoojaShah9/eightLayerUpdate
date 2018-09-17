@@ -1,3 +1,7 @@
+#content{
+  margin-left: -120px;
+  margin-right: 80px;
+}
 ul {
     list-style-type: none;
   }
@@ -24,7 +28,7 @@ ul {
     font-size: 16px;
 }
 .modal-content {
-
+  margin-left: -75px !important;
   background: #fff !important;
   color: #555 !important;
 }
@@ -99,11 +103,10 @@ ul {
 .fa-smile-o {
   font-size:48px;
 }
-/* .quize{
 
-  display: block
-
-} */
+.error {
+  color: red;
+}
 /* .modal {
 
   display: block !important

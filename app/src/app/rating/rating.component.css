@@ -3,6 +3,7 @@
   margin-left: 52px;
 }
 .rating {
+  border: none;
   float:left;
 }
 .quizeDialog{
@@ -17,7 +18,18 @@
   font-size: 19px !important;
 }
 .rating-image{
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   margin-left: 5px;
+}
+img:hover{
+  border: 2px solid #000;
+  border-radius: 20px;
+}
+.selected {
+  width: 35px;
+  height: 35px;
+  margin-left: 5px;
+  border: 2px solid gold;
+  border-radius: 20px;
 }

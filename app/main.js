@@ -38,7 +38,6 @@ function createWindow () {
     //icon: `file:${__dirname}/src/assets/img/favicon/favicon.png`
       icon: `${__dirname}/src/assets/img/favicon/8-layer-logo-v3.png`
 });
-console.log("icon file path" , `${__dirname}/src/assets/img/favicon/6.jpg`)
  win.loadURL(url.format({
 
     pathname: path.join(__dirname + '/dist/index.html'),
@@ -62,6 +61,7 @@ win.hide();
 // Event when the window is closed.
 win.on('closed', function () {
 win = null
+  tray.destroy();
 })
 }
 // Create window on electron intialization

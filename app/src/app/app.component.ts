@@ -23,21 +23,25 @@ export class AppComponent implements OnInit  {
       sessionStorage.removeItem("accessToken");
      }
 
-  ngOnInit() {
-    // new notification();
-    this.notificationService.getLesson().subscribe(data => {
-      if(data){
-        new notification('Lesson Notification',"There is a lesson prepared and ready for you." +
-          "Take 5 Minutes and complete the session." +
-          "Do you want to take it now?");
-      }
 
+  ngOnInit() {
+    new notification();
+    this.notificationService.getLesson().subscribe(data => {
+      if(data) {
+        if (data.body.data.length !== 0) {
+          new notification('Lesson Notification', "There is a lesson prepared and ready for you." +
+            "Take 5 Minutes and complete the session." +
+            "Do you want to take it now?");
+        }
+      }
     });
     this.notificationService.getQuizSchedule().subscribe(data => {
       if(data) {
-        new notification('Quize Notification',"There is a quize prepared and ready for you." +
-          "Take 5 Minutes and complete the session." +
-          "Do you want to take it now?");
+        if (data.body.data.length !== 0) {
+          new notification('Quize Notification', "There is a quize prepared and ready for you." +
+            "Take 5 Minutes and complete the session." +
+            "Do you want to take it now?");
+        }
       }
     });
     console.log('login page');

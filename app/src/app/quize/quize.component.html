@@ -40,7 +40,7 @@
                                             <th>Scheduled Quiz</th>
                                             <th>Date</th>
                                             <th>Status</th>
-                                            <th>Action</th>
+                                            <th [hidden]="showAction">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody *ngFor="let Qdata of quizeData?.data; let i=index">
@@ -49,8 +49,8 @@
                                             <td>{{i + 1}}</td>
                                             <td>{{Qdata.scheduled_date}}</td>
                                             <td>{{quizStatus}}</td>
-                                            <td>
-                                                <i (click)="quizStart(Qdata.quiz_schedule_id)" style="cursor: pointer;" title="Quiz start" class="fa fa-flag-o" aria-hidden="true"></i>
+                                            <td [hidden]="showAction">
+                                                <span (click)="quizStart(Qdata.quiz_schedule_id)" style="cursor: pointer;" title="Quiz start" class="fa fa-flag-o" aria-hidden="true"></span>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -116,7 +116,8 @@
                                                                     <span>
                                                                         <input (click)="selectedAnswer(answerData[i], i)" [checked]="i === myIndex"
                                                                             type="radio" name="answer" value="Answer">
-                                                                    </span>&nbsp;&nbsp;{{answerData[i]}}</li>
+                                                                    </span>
+                                                                  &nbsp;&nbsp;{{answerData[i]}}</li>
                                                             </ng-template>
                                                           <ng-template #type2>
                                                                 <li>
@@ -124,8 +125,7 @@
                                                                             <input name="type2"
                                                                              type="checkbox"
                                                                              (change)="selectedAnswertype2(answerData[i], $event, i)"
-                                                                             [checked]="findIsChecked(answerData[i])"
-                                                                            >
+                                                                             [checked]="findIsChecked(answerData[i])">
                                                                         </span>&nbsp;&nbsp;{{answerData[i]}}
 
                                                                         <!-- <form [formGroup]="myForm">
@@ -144,7 +144,7 @@
                                                 </div>
                                             </div>
                                             <div class="m-t-10 text-right btn-group-box">
-                                                <button (click)="submitAnswer()" type="button" class="btn btn-primary bg-color-blue">
+                                                <button (click)="submitAnswer()" hidden="!isShow" type="button" class="btn btn-primary bg-color-blue">
                                                     Submit
                                                 </button>
                                             </div>
@@ -194,6 +194,9 @@
             <div class="modal-body">
                 <p>{{finalLessonData}}</p>
             </div>
+          <div class="modal-footer">
+            <button type="button" class="close btn btn-primary bg-color-blue" style="width: 80px; height: 30px; background-color: #0c2939 !important;" data-dismiss="modal">Got it</button>
+          </div>
         </div>
 
     </div>
@@ -221,5 +224,5 @@
 </div>
 <!--Quize: Popup -->
 <div *ngIf="ratingModelShow">
-  <app-rating [rating]='rating' [itemId]='id' (ratingClick)='ratingComponentClick($event)'></app-rating>
+  <app-rating [rating]='rating' [itemId]='id' [comments]="comments" [submit]="submit" (ratingClick)='ratingComponentClick($event)'></app-rating>
 </div>

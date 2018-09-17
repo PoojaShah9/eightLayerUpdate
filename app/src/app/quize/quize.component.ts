@@ -61,9 +61,13 @@ export class QuizeComponent implements OnInit {
   private saveUsername: boolean = true;
   public data;
   ratingModelShow: boolean = false;
-  ratingClicked: number;
+  ratingClicked: any;
   rating: number;
   id: number;
+  submit: boolean;
+  comments: any;
+  type2Answer;
+  showAction = false;
   constructor(private httpClient: HttpClient, private _fb: FormBuilder, private router: Router) {
 
 
@@ -233,6 +237,10 @@ export class QuizeComponent implements OnInit {
 
 
       this.quizStatus = "Complete";
+      // alert('in function' + this.quizStatus);
+      if(this.quizStatus === 'Completed') {
+        this.showAction = true;
+      }
       this.questionSection = true;
 
     } else {
@@ -274,6 +282,7 @@ export class QuizeComponent implements OnInit {
   }
 
   selectedAnswertype2(answer: string, isChecked, finalIndex) {
+    this.type2Answer = answer;
     console.log("i = " + finalIndex);
     console.log("answer = " + answer);
     this.finalType2Answers.push(answer)
@@ -324,7 +333,6 @@ export class QuizeComponent implements OnInit {
   }
 
   findIsChecked(value) {
-
     if (this.type2Data.length > 0) {
       const result = this.type2Data.find(function (element) {
         return element === value;
@@ -345,148 +353,25 @@ export class QuizeComponent implements OnInit {
 
 
   submitAnswer() {
-    this.showSpinner = true;
+    if(this.type2Answer === undefined) {
+      // alert('Select Answer')
+      this.disableQuestion = false;
+    } else {
+      this.showSpinner = true;
 
-    //  if (this.currentAns) {
+      //  if (this.currentAns) {
 
-    this.disableQuestion = true;
-    if (this.currentType == "1") {
-      /*for type1 start*/
-      let ansID = this.myIndex;
-      let ansObj = {};
-      ansObj[ansID] = this.currentAns;
+      this.disableQuestion = true;
+      if (this.currentType == "1") {
+        /*for type1 start*/
+        let ansID = this.myIndex;
+        let ansObj = {};
+        ansObj[ansID] = this.currentAns;
 
-      this.httpClient.post('https://36mxqyy77a.execute-api.us-east-1.amazonaws.com/dev/users/' + this.userID + '/questions/' + this.quizeQuestion.data[this.count].question_code + '/useranswers',
-        JSON.stringify({
-          "answer":
-          ansObj
-        }),
-        {
-          headers: new HttpHeaders().set('accesstoken', localStorage.getItem("accessToken")
-          )
-        }
-      ).subscribe((data: any) => {
-
-        this.display = 'block';
-
-        /*for right answer*/
-        this.httpClient.get('https://36mxqyy77a.execute-api.us-east-1.amazonaws.com/dev/chapters/' + this.quizeQuestion.data[this.count].chapter_code + '/questions/' + this.quizeQuestion.data[this.count].question_code + '/answers',
-          {
-            headers: new HttpHeaders().set('accesstoken', localStorage.getItem("accessToken"))
-          }).subscribe(data => {
-
-          console.log(data);
-          this.currectAnswerdata = data
-
-          this.currectAnswer = "";
-          for (let ans in this.currectAnswerdata.data[0].answer) {
-
-            this.currectAnswer = this.currectAnswerdata.data[0].answer[ans]
-          }
-
-          if (this.currectAnswer == this.currentAns) {
-
-            this.message = "Correct Answer"
-            this.currentAns = "";
-          } else {
-
-            this.message = "Incorrect Answer"
-            this.currentAns = "";
-          }
-
-
-        }, (error: any) => {
-
-          console.log("error = " + error);
-
-        })
-
-        this.showSpinner = false;
-
-      }, (error: any) => {
-
-        console.log("error of enterprise" + error);
-      });
-      /*for type1 end*/
-    }
-    else {
-      /*type 2 solutions*/
-      let objAns = {};
-
-      this.httpClient.get('https://36mxqyy77a.execute-api.us-east-1.amazonaws.com/dev/chapters/' + this.quizeQuestion.data[this.count].chapter_code + '/questions/' + this.quizeQuestion.data[this.count].question_code + '/answers',
-        {
-          headers: new HttpHeaders().set('accesstoken', localStorage.getItem("accessToken"))
-        }).subscribe(data => {
-        console.log("type 2 data");
-        this.compareData = data
-        let obj1 = {}
-        obj1 = this.compareData.data[0].answer
-
-        console.log("saved answer = ", obj1);
-        this.display = 'block';
-        this.showSpinner = false;
-        const answer1 = [];
-        let obj2 = [];
-        obj2 = this.type2Data
-        console.log("inputed data", obj2)
-        let wrong = 0;
-
-        for (let key in obj1) {
-
-          answer1.push(obj1[key]);
-
-        }
-
-        for (let i = 0; i < obj2.length; i++) {
-
-
-          if (answer1.indexOf(obj2[i]) != -1) {
-            console.log("found");
-            this.isFound = false;
-            this.currectAnswer = answer1;
-          }
-          else {
-
-            console.log("not found");
-            this.isFound = true;
-            this.currectAnswer = answer1;
-            wrong = wrong + 1
-
-          }
-
-        }
-        if (wrong > 0) {
-
-          this.message = "Incorrect Answer"
-
-        } else {
-
-          this.message = "Correct Answer"
-        }
-        /*for type2 start*/
-
-        console.log("finalType2Answers", this.finalType2Answers, "index", this.finalType2Index);
-
-        console.log("this.finalType2Answers.length", this.finalType2Answers.length);
-
-        for (let i = 0; i < this.finalType2Index.length; i++) {
-
-          for (let j = 0; j < this.finalType2Index.length; j++) {
-
-            console.log(this.finalType2Index[i], this.finalType2Answers[j]);
-
-            objAns[this.finalType2Index[j]] = this.finalType2Answers[j]
-
-          }
-
-        }
-
-        /*type 2 save answer*/
-        console.log("finallllllll  answerrr  = ", objAns);
         this.httpClient.post('https://36mxqyy77a.execute-api.us-east-1.amazonaws.com/dev/users/' + this.userID + '/questions/' + this.quizeQuestion.data[this.count].question_code + '/useranswers',
           JSON.stringify({
             "answer":
-            objAns
+            ansObj
           }),
           {
             headers: new HttpHeaders().set('accesstoken', localStorage.getItem("accessToken")
@@ -494,29 +379,157 @@ export class QuizeComponent implements OnInit {
           }
         ).subscribe((data: any) => {
 
-          console.log("data", data);
           this.display = 'block';
-          this.type2Data = [];
-          this.finalType2Answers = [];
-          this.finalType2Index = [];
+
+          /*for right answer*/
+          this.httpClient.get('https://36mxqyy77a.execute-api.us-east-1.amazonaws.com/dev/chapters/' + this.quizeQuestion.data[this.count].chapter_code + '/questions/' + this.quizeQuestion.data[this.count].question_code + '/answers',
+            {
+              headers: new HttpHeaders().set('accesstoken', localStorage.getItem("accessToken"))
+            }).subscribe(data => {
+
+            console.log(data);
+            this.currectAnswerdata = data
+
+            this.currectAnswer = "";
+            for (let ans in this.currectAnswerdata.data[0].answer) {
+
+              this.currectAnswer = this.currectAnswerdata.data[0].answer[ans]
+            }
+
+            if (this.currectAnswer == this.currentAns) {
+
+              this.message = "Correct Answer"
+              this.currentAns = "";
+            } else {
+
+              this.message = "Incorrect Answer"
+              this.currentAns = "";
+            }
+
+
+          }, (error: any) => {
+
+            console.log("error = " + error);
+
+          })
+
           this.showSpinner = false;
 
         }, (error: any) => {
 
-          console.log("error of enterprise" + error.message);
+          console.log("error of enterprise" + error);
         });
+        /*for type1 end*/
+      }
+      else {
+        /*type 2 solutions*/
+        let objAns = {};
 
-      }, (error: any) => {
+        this.httpClient.get('https://36mxqyy77a.execute-api.us-east-1.amazonaws.com/dev/chapters/' + this.quizeQuestion.data[this.count].chapter_code + '/questions/' + this.quizeQuestion.data[this.count].question_code + '/answers',
+          {
+            headers: new HttpHeaders().set('accesstoken', localStorage.getItem("accessToken"))
+          }).subscribe(data => {
+          console.log("type 2 data");
+          this.compareData = data
+          let obj1 = {}
+          obj1 = this.compareData.data[0].answer
 
-        console.log("error = " + error);
+          console.log("saved answer = ", obj1);
+          this.display = 'block';
+          this.showSpinner = false;
+          const answer1 = [];
+          let obj2 = [];
+          obj2 = this.type2Data
+          console.log("inputed data", obj2)
+          let wrong = 0;
 
-      })
-      //---
-      console.log("answer", objAns)
+          for (let key in obj1) {
 
+            answer1.push(obj1[key]);
+
+          }
+
+          for (let i = 0; i < obj2.length; i++) {
+
+
+            if (answer1.indexOf(obj2[i]) != -1) {
+              console.log("found");
+              this.isFound = false;
+              this.currectAnswer = answer1;
+            }
+            else {
+
+              console.log("not found");
+              this.isFound = true;
+              this.currectAnswer = answer1;
+              wrong = wrong + 1
+
+            }
+
+          }
+          if (wrong > 0) {
+
+            this.message = "Incorrect Answer"
+
+          } else {
+
+            this.message = "Correct Answer"
+          }
+          /*for type2 start*/
+
+          console.log("finalType2Answers", this.finalType2Answers, "index", this.finalType2Index);
+
+          console.log("this.finalType2Answers.length", this.finalType2Answers.length);
+
+          for (let i = 0; i < this.finalType2Index.length; i++) {
+
+            for (let j = 0; j < this.finalType2Index.length; j++) {
+
+              console.log(this.finalType2Index[i], this.finalType2Answers[j]);
+
+              objAns[this.finalType2Index[j]] = this.finalType2Answers[j]
+
+            }
+
+          }
+
+          /*type 2 save answer*/
+          console.log("finallllllll  answerrr  = ", objAns);
+          this.httpClient.post('https://36mxqyy77a.execute-api.us-east-1.amazonaws.com/dev/users/' + this.userID + '/questions/' + this.quizeQuestion.data[this.count].question_code + '/useranswers',
+            JSON.stringify({
+              "answer":
+              objAns
+            }),
+            {
+              headers: new HttpHeaders().set('accesstoken', localStorage.getItem("accessToken")
+              )
+            }
+          ).subscribe((data: any) => {
+
+            console.log("data", data);
+            this.display = 'block';
+            this.type2Data = [];
+            this.finalType2Answers = [];
+            this.finalType2Index = [];
+            this.showSpinner = false;
+
+          }, (error: any) => {
+
+            console.log("error of enterprise" + error.message);
+          });
+
+        }, (error: any) => {
+
+          console.log("error = " + error);
+
+        })
+        //---
+        console.log("answer", objAns)
 
 //-----
+      }
     }
+
   }
 
   /* onChange(email: string, event: boolean) {
@@ -531,11 +544,12 @@ export class QuizeComponent implements OnInit {
     }
   }*/
   ngOnInit() {
-
+    // alert(this.quizStatus);
+    if(this.quizStatus === 'Completed') {
+      this.showAction = true;
+    }
     this.showSpinner = true;
     this.entId = localStorage.getItem("enterpriseId");
-
-
     this.httpClient.get('https://o9dzztjg31.execute-api.us-east-1.amazonaws.com/dev/schedules/quizzes/' + this.entId,
       {
         headers: new HttpHeaders().set('accesstoken', localStorage.getItem("accessToken"))
@@ -592,12 +606,11 @@ export class QuizeComponent implements OnInit {
     this.redClassBool = true;
   }
   ratingComponentClick(clickObj: any): void {
-      this.ratingClicked = clickObj.rating;
-      setTimeout(()=>{
-        this.ratingModelShow = false;
-      },5000);
+    this.ratingClicked = clickObj;
+    console.log(JSON.stringify(this.ratingClicked));
+    if (this.ratingClicked.submit === true) {
+      this.ratingModelShow = false;
+    }
 
   }
-
-
 }

@@ -8,25 +8,30 @@ import 'path';
 export class RatingComponent implements OnInit {
   @Input() rating: number;
   @Input() itemId: number;
+  @Input() comments: any;
+  @Input() submit: any;
   @Output() ratingClick: EventEmitter<any> = new EventEmitter<any>();
   rate = false;
   inputName: string;
-  sad = `dirname + /src/assets/img/sad.png`;
   ngOnInit() {
     this.inputName = this.itemId + '_rating';
   }
   onClick(rating: number): void {
-    alert(rating);
     this.rating = rating;
-    this.ratingClick.emit({
-      itemId: this.itemId,
-      rating: rating
-    });
+
   }
   closeModel(){
     this.rate = false;
   }
   saveRating(){
-    alert('submit');
+    this.ratingClick.emit({
+      itemId: this.itemId,
+      rating: this.rating,
+      comments: this.comments,
+      submit: true
+    });
+  }
+  counter(i: number) {
+    return new Array(i);
   }
 }
