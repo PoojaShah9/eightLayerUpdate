@@ -36,7 +36,7 @@ function createWindow () {
     // frame:false,
     //backgroundColor: '#fffff'
     //icon: `file:${__dirname}/src/assets/img/favicon/favicon.png`
-      icon: `${__dirname}/src/assets/img/favicon/8-layer-logo-v3.png`
+      icon: `${__dirname}/src/assets/img/favicon/favicon.png`
 });
  win.loadURL(url.format({
 
@@ -48,7 +48,7 @@ function createWindow () {
 //win.loadURL(`file://${__dirname}/src/index.html`)
 //win.loadURL(`http://localhost:4200/login`)
 win.hide();
-  tray = new Tray(__dirname + '/src/assets/img/favicon/8-layer-logo-v3.png');
+  tray = new Tray(__dirname + '/src/assets/img/favicon/favicon.png');
   tray.setToolTip('EightLayerApp');
   tray.on('click', () => {
     win.isVisible() ? win.hide() : win.show()
