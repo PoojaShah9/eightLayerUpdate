@@ -12,6 +12,7 @@ declare var notification: any;
 })
 export class AppComponent implements OnInit  {
   // hideVar:boolean
+  entId;
    constructor(private httpClient:HttpClient,
                private notificationService: NotificationService){
 
@@ -26,7 +27,8 @@ export class AppComponent implements OnInit  {
 
   ngOnInit() {
     new notification();
-    this.notificationService.getLesson().subscribe(data => {
+    this.entId = localStorage.getItem("enterpriseId");
+    this.notificationService.getLesson(this.entId).subscribe(data => {
       if(data) {
         if (data.body.data.length !== 0) {
           new notification('Lesson Notification', "There is a lesson prepared and ready for you." +
@@ -35,7 +37,7 @@ export class AppComponent implements OnInit  {
         }
       }
     });
-    this.notificationService.getQuizSchedule().subscribe(data => {
+    this.notificationService.getQuizSchedule(this.entId).subscribe(data => {
       if(data) {
         if (data.body.data.length !== 0) {
           new notification('Quize Notification', "There is a quize prepared and ready for you." +

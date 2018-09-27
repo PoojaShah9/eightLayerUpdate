@@ -46,11 +46,11 @@
                                     <tbody *ngFor="let Qdata of quizeData?.data; let i=index">
                                         <tr>
 
-                                            <td>{{i + 1}}</td>
-                                            <td>{{Qdata.scheduled_date}}</td>
+                                            <td>{{lesson_Name}}</td>
+                                            <td>{{quizeDate}}</td>
                                             <td>{{quizStatus}}</td>
-                                            <td [hidden]="showAction">
-                                                <span (click)="quizStart(Qdata.quiz_schedule_id)" style="cursor: pointer;" title="Quiz start" class="fa fa-flag-o" aria-hidden="true"></span>
+                                            <td>
+                                                <span (click)="quizStart(Qdata.quiz_schedule_id)" [class.disable]="hideIcon" style="cursor: pointer;" title="Quiz start" class="fa fa-flag-o" aria-hidden="true"></span>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -84,9 +84,9 @@
                                         <div [class.disable]="disableQuestion">
                                             <div class="black-trans-box">
                                                 <div class="row">
-                                                    <div class="col-md-12">
+                                                    <div class="col-md-12" *ngFor="let Q of counter(Qlength) | paginate: { itemsPerPage: 1, currentPage: p }" >
                                                         <!-- <h4 class="m-b-10">Add Question</h4> -->
-                                                        <div class="form-group">
+                                                        <div class="form-group" >
                                                             <label>Question</label>
                                                             <input readonly type="text" [ngModel]="myQuizquestion" class="form-control" placeholder="Question" />
                                                         </div>
@@ -140,11 +140,12 @@
                                                                 <div *ngIf="isValid;then type1 else type2"></div>
                                                         </ul>
                                                         <span *ngIf="!isValid" style="color: red">*Choose all answers that apply.</span>
+                                                      <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="m-t-10 text-right btn-group-box">
-                                                <button (click)="submitAnswer()" hidden="!isShow" type="button" class="btn btn-primary bg-color-blue">
+                                                <button (click)="submitAnswer()" type="button" class="btn btn-primary bg-color-blue">
                                                     Submit
                                                 </button>
                                             </div>

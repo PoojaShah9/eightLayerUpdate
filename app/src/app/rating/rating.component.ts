@@ -13,12 +13,13 @@ export class RatingComponent implements OnInit {
   @Output() ratingClick: EventEmitter<any> = new EventEmitter<any>();
   rate = false;
   inputName: string;
+  value;
   ngOnInit() {
     this.inputName = this.itemId + '_rating';
   }
   onClick(rating: number): void {
     this.rating = rating;
-
+    this.value = this.rating;
   }
   closeModel(){
     this.rate = false;

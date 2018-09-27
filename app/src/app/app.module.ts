@@ -41,6 +41,7 @@ import {ForgotPasswordService} from './login/forgot-password.service'
 import {RatingComponent} from "./rating/rating.component";
 import {CloneService} from "../services/clone.service";
 import {NotificationService} from "../services/notification.service";
+import {NgxPaginationModule} from 'ngx-pagination';
 declare var $: any;
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ declare var $: any;
     routing,
     MainPipe,
     ChartsModule,
-    ImageUploadModule.forRoot()
+    ImageUploadModule.forRoot(),
+    NgxPaginationModule
   ],
   providers: [ EnterpriseDataService, FileService,ForgotPasswordService, CloneService, NotificationService ],
   bootstrap: [AppComponent]

@@ -9,21 +9,12 @@
          <div class="form-group">
            <form id="smiley">
              <fieldset class="rating">
-               <img src="./../src/assets/img/unhappy.png" alt="image not found" class="rating-image" (click)="onClick(1)">
-               <img src="./../src/assets/img/sad.png" alt="image not found" class="rating-image" (click)="onClick(2)">
-               <img src="./../src/assets/img/confused.png" alt="image not found" class="rating-image" (click)="onClick(3)">
-               <img src="./../src/assets/img/smiling.png" alt="image not found" class="rating-image" (click)="onClick(4)">
-               <img src="./../src/assets/img/happy.png" alt="image not found" class="rating-image" (click)="onClick(5)">
+               <img src="./../src/assets/img/unhappy.png" alt="image not found" [ngClass]="{'rating-image-click': value == 1}" class="rating-image" (click)="onClick(1)">
+               <img src="./../src/assets/img/sad.png" alt="image not found" [ngClass]="{'rating-image-click': value == 2}" class="rating-image"  (click)="onClick(2)">
+               <img src="./../src/assets/img/confused.png" alt="image not found" [ngClass]="{'rating-image-click': value == 3}" class="rating-image" (click)="onClick(3)">
+               <img src="./../src/assets/img/smiling.png" alt="image not found" [ngClass]="{'rating-image-click': value == 4}" class="rating-image" (click)="onClick(4)">
+               <img src="./../src/assets/img/happy.png" alt="image not found" [ngClass]="{'rating-image-click': value == 5}" class="rating-image" (click)="onClick(5)">
              </fieldset>
-             <!--<div *ngFor="let rate of counter(rating);let i = index">-->
-               <!--<fieldset class="rating">-->
-                 <!--<img src="./../src/assets/img/unhappy.png" [ngModel]="rate" alt="image not found" [ngClass]="rate == i+1 ? 'selected' : 'rating-image' " (click)="onClick(1)">-->
-                 <!--<img src="./../src/assets/img/sad.png" [ngModel]="rate" alt="image not found" class="selected" (click)="onClick(2)">-->
-                 <!--<img src="./../src/assets/img/confused.png" [ngModel]="rate" alt="image not found" class="selected" (click)="onClick(3)">-->
-                 <!--<img src="./../src/assets/img/smiling.png" [ngModel]="rate" alt="image not found" class="selected" (click)="onClick(4)">-->
-                 <!--<img src="./../src/assets/img/happy.png" [ngModel]="rate" alt="image not found" class="selected" (click)="onClick(5)">-->
-               <!--</fieldset>-->
-             <!--</div>-->
            </form>
 
          </div>

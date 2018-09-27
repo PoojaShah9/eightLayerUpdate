@@ -33,13 +33,9 @@ function createWindow () {
     win = new BrowserWindow({
     width: 1000,
     height: 600,
-    // frame:false,
-    //backgroundColor: '#fffff'
-    //icon: `file:${__dirname}/src/assets/img/favicon/favicon.png`
-      icon: `${__dirname}/src/assets/img/favicon/8-layer-logo-v3.png`
+    icon: `${__dirname}/src/assets/img/favicon/8-layer-logo-v3.png`
 });
  win.loadURL(url.format({
-
     pathname: path.join(__dirname + '/dist/index.html'),
     protocol:'file',
     slashes:true
@@ -47,7 +43,7 @@ function createWindow () {
  }));
 //win.loadURL(`file://${__dirname}/src/index.html`)
 //win.loadURL(`http://localhost:4200/login`)
-win.hide();
+  win.hide();
   tray = new Tray(__dirname + '/src/assets/img/favicon/8-layer-logo-v3.png');
   tray.setToolTip('EightLayerApp');
   tray.on('click', () => {
@@ -60,8 +56,6 @@ win.hide();
 
 // Event when the window is closed.
 win.on('closed', function () {
-win = null
-  tray.destroy();
 })
 }
 // Create window on electron intialization
@@ -70,6 +64,7 @@ app.on('ready', createWindow)
 app.on('window-all-closed', function () {
 // On macOS specific close process
 if (process.platform !== 'darwin') {
+  // win.hide();
 app.quit()
 }
 })
@@ -78,7 +73,8 @@ app.on('activate', function () {
 if (win === null) {
 createWindow()
 }
-})
+});
+
 app.on('browser-window-created',function(e,window) {
   window.setMenu(null);
 });

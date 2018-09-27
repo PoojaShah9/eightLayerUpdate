@@ -4,10 +4,10 @@ import { HttpClient } from '@angular/common/http';
 export class NotificationService {
 
   constructor(private httpClient: HttpClient) { }
-  getLesson() {
-    return this.httpClient.get<any>("https://gvb0azqv1e.execute-api.us-east-1.amazonaws.com/dev/lesson");
+  getLesson(id) {
+    return this.httpClient.get<any>("https://gvb0azqv1e.execute-api.us-east-1.amazonaws.com/dev/lesson?entid=" + id);
   }
-  getQuizSchedule() {
-    return this.httpClient.get<any>("https://gvb0azqv1e.execute-api.us-east-1.amazonaws.com/dev/quiz-schedule");
+  getQuizSchedule(id) {
+    return this.httpClient.get<any>("https://gvb0azqv1e.execute-api.us-east-1.amazonaws.com/dev/quiz-schedule?entid=" + id);
   }
 }
