@@ -65,9 +65,9 @@ function createWindow() {
 }
 
 // Create window on electron intialization
-app.on('ready', createWindow()
+// app.on('ready', createWindow()
 app.on('ready', function(){
-{
+createWindow()
   autoUpdater.checkForUpdatesAndNotify();
 });
 // Quit when all windows are closed.
