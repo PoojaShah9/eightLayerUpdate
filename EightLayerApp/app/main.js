@@ -66,7 +66,6 @@ function createWindow() {
 
 // Create window on electron intialization
 app.on('ready', createWindow);
-  autoUpdater.checkForUpdatesAndNotify();
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
@@ -113,4 +112,7 @@ autoUpdater.on('download-progress', (progressObj) => {
 })
 autoUpdater.on('update-downloaded', (info) => {
   sendStatusToWindow('Update downloaded');
+});
+app.on('ready', function()  {
+  autoUpdater.checkForUpdatesAndNotify();
 });
