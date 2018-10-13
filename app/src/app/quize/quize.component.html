@@ -40,7 +40,7 @@
                                             <th>Scheduled Quiz</th>
                                             <th>Date</th>
                                             <th>Status</th>
-                                            <th [hidden]="showAction">Action</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody *ngFor="let Qdata of quizeData?.data; let i=index">
@@ -115,7 +115,7 @@
                                                                 <li>
                                                                     <span>
                                                                         <input (click)="selectedAnswer(answerData[i], i)" [checked]="i === myIndex"
-                                                                            type="radio" name="answer" value="Answer">
+                                                                            type="radio" name="answer" value="Answer" [disabled]="questionDisable === true">
                                                                     </span>
                                                                   &nbsp;&nbsp;{{answerData[i]}}</li>
                                                             </ng-template>
@@ -124,8 +124,9 @@
                                                                         <span>
                                                                             <input name="type2"
                                                                              type="checkbox"
+                                                                             [value]="ansChecked"
                                                                              (change)="selectedAnswertype2(answerData[i], $event, i)"
-                                                                             [checked]="findIsChecked(answerData[i])">
+                                                                             [checked]="findIsChecked(answerData[i])" [disabled]="questionDisable === true">
                                                                         </span>&nbsp;&nbsp;{{answerData[i]}}
 
                                                                         <!-- <form [formGroup]="myForm">
@@ -141,6 +142,12 @@
                                                         </ul>
                                                         <span *ngIf="!isValid" style="color: red">*Choose all answers that apply.</span>
                                                       <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+                                                      <hr>
+                                                      <label>Total Question:</label>
+                                                      {{Qlength}}
+                                                      <hr>
+                                                      <label>Attempt Question:</label>
+                                                      {{attemptQue}}
                                                     </div>
                                                 </div>
                                             </div>

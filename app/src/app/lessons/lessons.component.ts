@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {LessonScheduleService} from "../../services/lesson-schedule.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-lessons',
@@ -8,23 +10,52 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class LessonsComponent implements OnInit {
   showSpinner:boolean = false;
-  lessenDatas:any;
-  constructor(private httpClient: HttpClient) { }
+  lessonData:any;
+  rowSelected;
+  chapterData:any;
+  showLesson = false;
+  currentChapIndx: any;
+  chapter: any;
+  display = "none";
+  chaptersNameForQuestion:any;
+
+
+  constructor(private httpClient: HttpClient,
+              private lessonScheduleService: LessonScheduleService,
+              private router: Router) { }
 
   ngOnInit() {
     this.showSpinner = true;
-    this.httpClient.get('https://2gs6fkutxh.execute-api.us-east-1.amazonaws.com/dev/reports/lessoncount/chapters',
-    {
-      headers: new HttpHeaders().set('accesstoken', localStorage.getItem("accessToken"))
-    })
-    .subscribe(data => {
-      console.log(data);
-      this.lessenDatas = data
-      console.log("this.lessenDatas" , this.lessenDatas);
+    this.httpClient.get<any>('https://gvb0azqv1e.execute-api.us-east-1.amazonaws.com/dev/chapters')
+    .subscribe(response => {
+      console.log('data',response);
+      this.chapterData = response.body
+      console.log("this.chapterData" , this.chapterData);
       this.showSpinner = false;
-      //this.Edata = Array.of(this.Edata);
     });
 
+  }
+
+  currentChapter(chaptersName: any, currChepId: any, indx) {
+    this.chapter = currChepId,
+      this.currentChapIndx = indx,
+      this.chaptersNameForQuestion = chaptersName;
+  }
+  closeChapterPopup(){
+    this.display = "none";
+  }
+
+  lessonList(chapter) {
+    if (chapter) {
+      this.display = "none";
+      let entid = localStorage.getItem('Orgnisation_id');
+      console.log('ent', entid);
+      console.log('chapter', chapter);
+      this.router.navigate(['lessonlist', chapter, 12333]);
+    } else {
+      this.display = "block";
+      //alert("Please First select any chapter");
+    }
   }
 
 }

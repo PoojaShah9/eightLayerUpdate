@@ -1,0 +1,54 @@
+<app-child-component></app-child-component>
+<div *ngIf="showSpinner">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<div id="main" role="main">
+  <!-- MAIN CONTENT -->
+  <div id="content">
+    <div class="row">
+      <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+        <h1 class="page-title txt-color-blueDark">
+          <i class="fa-fw fa fa-book-open"></i> Lesson List</h1>
+      </div>
+    </div>
+    <section>
+      <!-- row -->
+      <div class="row">
+        <!-- NEW WIDGET START -->
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <!-- widget content -->
+          <div class="widget-body">
+            <div class="row padding-10">
+              <div class="table-responsive padding-10">
+                <table class="table table-bordered text-left">
+                  <thead>
+                  <tr>
+                    <th>Lesson Number</th>
+                    <th>Lesson Name</th>
+                    <th>Lesson Detail</th>
+                  </tr>
+                  </thead>
+                  <tbody *ngFor="let lesson of lessonData; let i=index">
+                  <tr>
+                    <td>{{lesson.lesson_no}}</td>
+                    <td>{{lesson.lesson_name}}</td>
+                    <td>{{lesson.lesson_detail}}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+          <!-- end widget content -->
+        </article>
+        <!-- WIDGET END -->
+      </div>
+      <!-- end row -->
+    </section>
+
+  </div>
+  <!-- END MAIN CONTENT -->
+
+  <!-- /.modal !-->
+</div>

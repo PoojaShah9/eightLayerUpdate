@@ -18,6 +18,8 @@ import { SiteAdminAlertComponent } from './site-admin-alert/site-admin-alert.com
 import { SiteAdminConfigComponent } from './site-admin-config/site-admin-config.component';
 import { SiteAdminFeedbackComponent } from './site-admin-feedback/site-admin-feedback.component';
 import { SiteAdminReportsComponent } from './site-admin-reports/site-admin-reports.component';
+import {ScheduleComponent} from "./schedule/schedule.component";
+import {LessonListComponent} from "./lesson-list/lesson-list.component";
 
 
 const routes: Routes = [
@@ -32,6 +34,7 @@ const routes: Routes = [
     { path: 'type2/:lId', component:  Questiontype2Component, pathMatch: 'full' },
     { path: 'type3/:lId', component:  Questiontype3Component, pathMatch: 'full' },
     { path: 'questionlist/:lessonId/:chapname', component:  QuestionListComponent, pathMatch: 'full' },
+    { path: 'lessonlist/:chapterId/:entid', component:  LessonListComponent, pathMatch: 'full' },
     //{ path: 'Clienthome', component: ClienhomeComponent, pathMatch: 'full' },
     { path: 'quiz', component: QuizeComponent, pathMatch: 'full' },
     { path: 'ScheduledLesson', component: ClientlessonsComponent, pathMatch: 'full' },
@@ -39,10 +42,11 @@ const routes: Routes = [
     { path: 'SiteAdminAlert', component: SiteAdminAlertComponent, pathMatch: 'full' },
     { path: 'SiteAdminConfig', component: SiteAdminConfigComponent, pathMatch: 'full' },
     { path: 'SiteAdminFeedback', component: SiteAdminFeedbackComponent, pathMatch: 'full' },
-    { path: 'SiteAdminReports', component: SiteAdminReportsComponent, pathMatch: 'full' }
-    
-  
-   
+    { path: 'SiteAdminReports', component: SiteAdminReportsComponent, pathMatch: 'full' },
+    { path: 'schedule', component: ScheduleComponent, pathMatch: 'full' }
+
+
+
   ];
-  
+
 export  const routing = RouterModule.forRoot(routes);

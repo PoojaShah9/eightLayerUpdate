@@ -9,6 +9,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FormControl, FormGroup, FormArray, FormBuilder, Validators} from '@angular/forms';
 import {ajaxGetJSON} from "rxjs/observable/dom/AjaxObservable";
 import {yellow} from "@angular-devkit/core/src/terminal/colors";
+import {el} from "@angular/platform-browser/testing/src/browser_util";
 
 
 @Component({
@@ -71,8 +72,14 @@ export class QuizeComponent implements OnInit {
   lesson_Name;
   hideIcon = false;
   quizeDate;
-  answerCounter = [];
   chapterCode;
+  attemptQue = 0;
+  question = [];
+  questionDisable = false;
+  queDetail = [];
+  selectedAns = [];
+  remainQue = 0;
+  ansChecked = [];
   constructor(private httpClient: HttpClient, private _fb: FormBuilder, private router: Router) {
 
 
@@ -173,7 +180,6 @@ export class QuizeComponent implements OnInit {
     this.disableQuestion = false;
     this.display = 'none';
     this.count = this.count + 1;
-
     if (this.count >= this.Qlength) {
       this.userID = localStorage.getItem("userId");
 
@@ -257,6 +263,14 @@ export class QuizeComponent implements OnInit {
       this.questionSection = true;
 
     } else {
+      for(let i=0; i< this.question.length; i++) {
+        this.attemptQue = this.attemptQue + 1;
+        this.remainQue = this.Qlength -1;
+        if(this.question[i] === this.quizeQuestion.data[this.count].question_code) {
+          alert(this.question[i]);
+          this.questionDisable = true;
+        }
+      }
       this.myQuizquestion = this.quizeQuestion.data[this.count].question
       //for options
       this.myIndex = !this.myIndex
@@ -343,8 +357,10 @@ export class QuizeComponent implements OnInit {
   }
 
   findIsChecked(value) {
+
     if (this.type2Data.length > 0) {
       const result = this.type2Data.find(function (element) {
+        console.log('dddddddddddddddddddddddd',element);
         return element === value;
       });
       if (result === 'undefined' || typeof result == "undefined")
@@ -377,9 +393,14 @@ export class QuizeComponent implements OnInit {
       if (this.currentType == "1") {
         /*for type1 start*/
         let ansID = this.myIndex;
-
         ansObj[ansID] = this.currentAns;
-
+        // this.queDetail = [{
+        //   'index': ansID,
+        //   'answer': this.currentAns,
+        //   'que_code': this.quizeQuestion.data[this.count].question_code
+        //
+        // }];
+        // this.selectedAns.push(this.queDetail);
         this.httpClient.post('https://36mxqyy77a.execute-api.us-east-1.amazonaws.com/dev/users/' + this.userID + '/questions/' + this.quizeQuestion.data[this.count].question_code + '/useranswers',
           JSON.stringify({
             "answer":
@@ -435,7 +456,6 @@ export class QuizeComponent implements OnInit {
       else {
         /*type 2 solutions*/
         ansObj = {};
-
         this.httpClient.get('https://36mxqyy77a.execute-api.us-east-1.amazonaws.com/dev/chapters/' + this.quizeQuestion.data[this.count].chapter_code + '/questions/' + this.quizeQuestion.data[this.count].question_code + '/answers',
           {
             headers: new HttpHeaders().set('accesstoken', localStorage.getItem("accessToken"))
@@ -503,7 +523,11 @@ export class QuizeComponent implements OnInit {
             }
 
           }
-
+          this.queDetail = [{
+            'answer': ansObj,
+            'que_code': this.quizeQuestion.data[this.count].question_code
+          }];
+          this.selectedAns.push(this.queDetail);
           /*type 2 save answer*/
           console.log("finallllllll  answerrr  = ", ansObj);
           this.httpClient.post('https://36mxqyy77a.execute-api.us-east-1.amazonaws.com/dev/users/' + this.userID + '/questions/' + this.quizeQuestion.data[this.count].question_code + '/useranswers',
@@ -539,6 +563,8 @@ export class QuizeComponent implements OnInit {
 
 //-----
       }
+      this.question.push(this.quizeQuestion.data[this.count].question_code);
+      console.log('qqqqqqqqqqqqqqqqqqqqqq', this.question);
     }
 
   }
@@ -573,8 +599,7 @@ export class QuizeComponent implements OnInit {
           headers: new HttpHeaders().set('accesstoken', localStorage.getItem("accessToken"))
         }).subscribe(data => {
         let lessonData;
-        lessonData = data
-        console.log(lessonData);
+        lessonData = data;
         this.finalLessonData = lessonData.data.chapter_lesson
         this.finalLessonDataName = lessonData.data.chapters_name
 
@@ -662,20 +687,25 @@ export class QuizeComponent implements OnInit {
   pageChanged(value) {
     this.p = value;
     this.count = value - 1;
-    console.log('value', this.quizeQuestion);
-    this.myQuizquestion = this.quizeQuestion.data[this.count].question;
-    this.myIndex = !this.myIndex
+    let check = this.question.includes(this.quizeQuestion.data[this.count].question_code);
+    console.log('oooooooooooooooo', this.selectedAns);
+    for(let i =0; i<this.selectedAns.length; i++) {
+      if(this.selectedAns[i].que_code === this.quizeQuestion.data[this.count].question_code) {
+          this.ansChecked = this.selectedAns[i].i;
+          console.log('fffffffffffffffffffff', this.ansChecked);
+      }
+    }
+    if(check === true) {
+      this.questionDisable = true;
+    } else {
+      this.questionDisable = false;
+    }
     this.answerData = [];
     this.option = 0;
-    this.currentType = this.quizeQuestion.data[this.count].question_type;
-    if (this.currentType == "1") {
-      this.isValid = true
-    } else {
-      this.isValid = false
-    }
     for (let data in this.quizeQuestion.data[this.count].question_options) {
       this.option = this.option + 1;
       this.answerData[this.option - 1] = this.quizeQuestion.data[this.count].question_options[this.option - 1].name;
     }
+
   }
 }

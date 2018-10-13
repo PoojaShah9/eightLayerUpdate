@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ObjNgFor } from '../client-enterprise/myPipe';
+import {LessonScheduleService} from "../../services/lesson-schedule.service";
+// this.router.navigateByUrl('/');
 @Component({
   selector: 'app-chapters',
   templateUrl: './chapters.component.html',
@@ -11,12 +13,17 @@ export class ChaptersComponent implements OnInit {
   showSpinner: boolean = false;
   chapterData: any;
   chapterName: any;
+  chapterId: any;
+  addLessonName: any;
+  lessonCount: any;
   display = "none";
+  lesson = 'none';
   typeName: any;
   questionType: any;
   lessonNumberVal: any;
   editChapterData: any;
   editChapterName: any;
+  editLessonName: any;
   editChapterLessonValue: any;
   editChaptersId: any;
   errorMessage: any;
@@ -32,13 +39,16 @@ export class ChaptersComponent implements OnInit {
   selectTypes: any;
   chaptersNameForQuestion: any;
   redClassBool: boolean = true;
-  constructor(private httpClient: HttpClient, private router: Router) { }
+  lessonData: any=[];
+  constructor(private httpClient: HttpClient, private router: Router,
+              private lessonScheduleService: LessonScheduleService) { }
 
 
 
   addNewChapter(name: any, question: any, lessonNumCount: any): any {
-
-
+  console.log('name', name);
+  console.log('question', question);
+  console.log('lessonNumCount', lessonNumCount);
     if (name && question && lessonNumCount) {
 
       this.chapterName = name;
@@ -170,33 +180,32 @@ export class ChaptersComponent implements OnInit {
 
       },
       error => this.errorMessage = error
-      );
+    );
 
   }
   //add Type
   currentChapter(chaptersName: any, currChepId: any, indx) {
-
-    this.chapter = currChepId
-    this.currentChapIndx = indx
+    this.chapter = currChepId,
+    this.currentChapIndx = indx,
     this.chaptersNameForQuestion = chaptersName
-
   }
   questionList(chapterQuestion) {
+    if(chapterQuestion){
+      this.display = "none";
+      this.router.navigate(['questionlist', chapterQuestion, this.chaptersNameForQuestion]);
+    }else{
 
-if(chapterQuestion){
-  this.display = "none";
-  this.router.navigate(['questionlist', chapterQuestion, this.chaptersNameForQuestion]);
-}else{
+      this.display = "block";
+      //alert("Please First select any chapter");
+    }
 
-this.display = "block";
-  //alert("Please First select any chapter");
-}
-    
   }
   closeChapterPopup(){
-
     this.display = "none";
-
+  }
+  closeLessonPopup() {
+    this.lesson = 'none';
+    this.lessonData = [];
   }
   ngOnInit() {
 
@@ -206,17 +215,47 @@ this.display = "block";
         headers: new HttpHeaders().set('accesstoken', localStorage.getItem("accessToken"))
       })
       .subscribe(data => {
-        console.log(data);
-        this.chapterData = data
-        this.showSpinner = false;
-      },
-      (error: any) => {
+          console.log(data);
+          this.chapterData = data
+          this.showSpinner = false;
+        },
+        (error: any) => {
 
-        this.router.navigateByUrl('/');
-        console.log("error of put" + error);
-      })
+          this.router.navigateByUrl('/');
+          console.log("error of put" + error);
+        })
+
+  }
+  onAddLesson(selectedChapterId,selectedChapterName) {
+    if(selectedChapterId){
+      this.display = "none";
+      this.lesson = 'block';
+      this.chapterName = selectedChapterName;
+      this.chapterId = selectedChapterId;
+     }else{
+      this.display = "block";
+      this.lesson = 'none';
+    }
 
   }
 
+  submitLesson(lessonName, lessonNo, lessonDetail) {
+    this.lessonData = {
+      "chapter_code": this.chapterId,
+      "lesson_no": lessonNo,
+      "lesson_name": lessonName,
+      "lesson_detail": lessonDetail
+    };
+    this.lessonScheduleService.addLesson(this.lessonData)
+      .subscribe((response) => {
+        alert('Lesson add successfully');
+        this.lessonData = [];
+        this.lesson = 'none';
+      },
+        (error) => {
+        alert('Error:'+ error);
+        }
+      )
+  }
+
 }
-// this.router.navigateByUrl('/');

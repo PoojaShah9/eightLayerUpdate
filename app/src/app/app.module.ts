@@ -42,6 +42,9 @@ import {RatingComponent} from "./rating/rating.component";
 import {CloneService} from "../services/clone.service";
 import {NotificationService} from "../services/notification.service";
 import {NgxPaginationModule} from 'ngx-pagination';
+import { ScheduleComponent } from './schedule/schedule.component';
+import {LessonScheduleService} from "../services/lesson-schedule.service";
+import {LessonListComponent} from "./lesson-list/lesson-list.component";
 declare var $: any;
 @NgModule({
   declarations: [
@@ -71,7 +74,9 @@ declare var $: any;
     SiteAdminConfigComponent,
     SiteAdminFeedbackComponent,
     SiteAdminReportsComponent,
-    RatingComponent
+    RatingComponent,
+    ScheduleComponent,
+    LessonListComponent
 
   ],
   imports: [
@@ -86,7 +91,7 @@ declare var $: any;
     ImageUploadModule.forRoot(),
     NgxPaginationModule
   ],
-  providers: [ EnterpriseDataService, FileService,ForgotPasswordService, CloneService, NotificationService ],
+  providers: [ EnterpriseDataService, FileService,ForgotPasswordService, CloneService, NotificationService, LessonScheduleService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
