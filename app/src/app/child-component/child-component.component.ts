@@ -14,6 +14,7 @@ export class ChildComponentComponent implements OnInit {
   enterpriseCount:any;
   showSpinner:boolean = false;
   userName:any;
+  detailsData: any =[];
 
   constructor(private httpClient: HttpClient,private router: Router) { }
 
@@ -29,6 +30,21 @@ export class ChildComponentComponent implements OnInit {
 
     console.log("child component is calling");
     this.showSpinner = true;
+    this.httpClient.get('https://o9dzztjg31.execute-api.us-east-1.amazonaws.com/dev/userdetails',
+      {
+        headers: new HttpHeaders().set('accesstoken', localStorage.getItem("accessToken"))
+      })
+      .subscribe(data => {
+        this.detailsData = data;
+        localStorage.setItem("userId", this.detailsData.data.userid);
+        localStorage.setItem("enterpriseId", this.detailsData.data.entid);
+
+      });
+
+
+
+
+
     this.httpClient.get('https://g3052kpia0.execute-api.us-east-1.amazonaws.com/dev/enterprises/',
     {
       headers: new HttpHeaders().set('accesstoken', localStorage.getItem("accessToken"))

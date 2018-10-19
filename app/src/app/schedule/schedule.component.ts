@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {LessonScheduleService} from "../../services/lesson-schedule.service";
 import {parseHttpResponse} from "selenium-webdriver/http";
@@ -20,11 +20,14 @@ export class ScheduleComponent implements OnInit {
   chapterName:any =[];
   Entdatas: any =[];
   editLessonData: any =[];
+  editQuizeData: any =[];
   entid;
   chapterid;
   onDownClick = false;
   currentent: any;
   currentChapter: any;
+
+  @ViewChild('scheduled_date') chapterScheduleDate;
   constructor(private httpClient: HttpClient,
               private lessonScheduleService: LessonScheduleService) { }
 
@@ -35,7 +38,7 @@ export class ScheduleComponent implements OnInit {
         headers: new HttpHeaders().set('accesstoken', localStorage.getItem("accessToken"))
       })
       .subscribe(response => {
-        this.Entdatas = response.data
+        this.Entdatas = response.data;
         this.showSpinner = false;
         }, (error: any) => {
         console.log("error = " + error);
@@ -48,6 +51,7 @@ export class ScheduleComponent implements OnInit {
       })
       .subscribe(response => {
           this.chapterName = response.data;
+          console.log('chapterName', this.chapterName);
           this.showSpinner = false;
         },
         (error: any) => {
@@ -60,7 +64,6 @@ export class ScheduleComponent implements OnInit {
     this.Entdatas.filter((x) => {
       if(x.entid === event) {
         this.currentent = x;
-        console.log('xxxxxxxxxx', this.currentent);
       }})
     console.log('entid', this.entid);
   }
@@ -74,27 +77,9 @@ export class ScheduleComponent implements OnInit {
     });
     console.log('chapterid', this.chapterid);
     this.showSpinner = true;
-    this.lessonScheduleService.getLessonSchedule(this.entid,this.chapterid)
-      .subscribe(response => {
-        this.showSpinner = false;
-        if(response) {
-          this.chapterData = response.body.data;
-        } else {
-          this.chapterData = [];
-          alert('No Any Lesson Schedule Created');
-        }
-      });
+    this.getChapterdata();
 
-    this.lessonScheduleService.getQuizData(this.entid,this.chapterid)
-      .subscribe(response => {
-        console.log('quizRecord', response);
-        if (response.body.data.length > 0) {
-          this.showSpinner = false;
-          this.quizeData = response.body.data;
-        } else {
-          this.quizeData = [];
-          alert('No Any Quize Schedule Created');
-        }});
+    this.getQuizedata()
   }
 
   createLessonSchedule(data) {
@@ -102,7 +87,6 @@ export class ScheduleComponent implements OnInit {
     this.editLessonData = data;
     this.editLessonData.chapters_name = this.currentChapter.chapters_name;
     this.editLessonData.entname = this.currentent.entname;
-    console.log('eeeeeeeeeeeeeeeeeeditLessonData', this.editLessonData);
   }
   close(){
     this.display = "none";
@@ -110,8 +94,6 @@ export class ScheduleComponent implements OnInit {
   }
 
   submitLessonSchedule(data,sDate) {
-    console.log('qqqqqqqqqqqqqqqqqqqqqqdata', data);
-    console.log('sDate', sDate);
     let lessonScheduleData = {
         "chapter_code": data.chapter_code,
         "chapter_lesson": data.lesson_detail,
@@ -124,14 +106,20 @@ export class ScheduleComponent implements OnInit {
     this.lessonScheduleService.addLessonSchedule(lessonScheduleData)
       .subscribe((response) => {
         console.log(response);
+        this.chapterScheduleDate.nativeElement = '';
+        this.getChapterdata();
         alert('Lesson Schedule Successfully.');
-      })
+      });
     this.editLessonData = [];
     this.display = 'none';
   }
 
   createQuizeSchedule() {
     this.quizePopup = 'block';
+    this.editQuizeData = this.editLessonData;
+    this.editQuizeData.chapters_name = this.currentChapter.chapters_name;
+    this.editQuizeData.entname = this.currentent.entname;
+
   }
   submitQuizeSchedule(data,qDate) {
     console.log('data', data);
@@ -139,15 +127,41 @@ export class ScheduleComponent implements OnInit {
     let quizeScheduleData =  {
       "entid": this.currentent.entid,
       "lessons_included": [
-        data.chapter_code
+        this.chapterid
     ],
-      "scheduled_date": qDate,
-      "chapter_code": data.chapter_code
+      "scheduled_date": qDate
     };
     this.lessonScheduleService.addQuizData(quizeScheduleData)
       .subscribe((response) => {
         console.log(response);
+        this.getQuizedata();
+        qDate ='';
         alert('Quize Schedule Successfully.');
       })
+  }
+  getChapterdata() {
+    this.lessonScheduleService.getLessonSchedule(this.entid,this.chapterid)
+      .subscribe(response => {
+        this.showSpinner = false;
+        if(response) {
+          this.chapterData = response.body.data;
+        } else {
+          this.chapterData = [];
+          alert('No Any Lesson Schedule Created');
+        }
+      });
+  }
+
+  getQuizedata() {
+    this.lessonScheduleService.getQuizData(this.entid,this.chapterid)
+      .subscribe(response => {
+        console.log('quizRecord', response);
+        if (response.body.data.length > 0) {
+          this.showSpinner = false;
+          this.quizeData = response.body.data;
+        } else {
+          this.quizeData = [];
+          alert('No Any Quize Schedule Created');
+        }});
   }
 }

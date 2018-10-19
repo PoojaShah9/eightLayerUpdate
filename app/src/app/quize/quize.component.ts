@@ -10,6 +10,7 @@ import {FormControl, FormGroup, FormArray, FormBuilder, Validators} from '@angul
 import {ajaxGetJSON} from "rxjs/observable/dom/AjaxObservable";
 import {yellow} from "@angular-devkit/core/src/terminal/colors";
 import {el} from "@angular/platform-browser/testing/src/browser_util";
+import {LessonScheduleService} from "../../services/lesson-schedule.service";
 
 
 @Component({
@@ -80,7 +81,8 @@ export class QuizeComponent implements OnInit {
   selectedAns = [];
   remainQue = 0;
   ansChecked = [];
-  constructor(private httpClient: HttpClient, private _fb: FormBuilder, private router: Router) {
+  constructor(private httpClient: HttpClient, private _fb: FormBuilder, private router: Router,
+              private lessonScheduleService: LessonScheduleService) {
 
 
   }
@@ -267,7 +269,6 @@ export class QuizeComponent implements OnInit {
         this.attemptQue = this.attemptQue + 1;
         this.remainQue = this.Qlength -1;
         if(this.question[i] === this.quizeQuestion.data[this.count].question_code) {
-          alert(this.question[i]);
           this.questionDisable = true;
         }
       }
@@ -360,7 +361,6 @@ export class QuizeComponent implements OnInit {
 
     if (this.type2Data.length > 0) {
       const result = this.type2Data.find(function (element) {
-        console.log('dddddddddddddddddddddddd',element);
         return element === value;
       });
       if (result === 'undefined' || typeof result == "undefined")
@@ -564,7 +564,6 @@ export class QuizeComponent implements OnInit {
 //-----
       }
       this.question.push(this.quizeQuestion.data[this.count].question_code);
-      console.log('qqqqqqqqqqqqqqqqqqqqqq', this.question);
     }
 
   }
@@ -600,8 +599,8 @@ export class QuizeComponent implements OnInit {
         }).subscribe(data => {
         let lessonData;
         lessonData = data;
-        this.finalLessonData = lessonData.data.chapter_lesson
-        this.finalLessonDataName = lessonData.data.chapters_name
+        this.finalLessonData = lessonData.data.chapter_lesson;
+        this.finalLessonDataName = lessonData.data.chapters_name;
 
         this.showSpinner = false;
         //this.Edata = Array.of(this.Edata);
@@ -688,11 +687,9 @@ export class QuizeComponent implements OnInit {
     this.p = value;
     this.count = value - 1;
     let check = this.question.includes(this.quizeQuestion.data[this.count].question_code);
-    console.log('oooooooooooooooo', this.selectedAns);
     for(let i =0; i<this.selectedAns.length; i++) {
       if(this.selectedAns[i].que_code === this.quizeQuestion.data[this.count].question_code) {
           this.ansChecked = this.selectedAns[i].i;
-          console.log('fffffffffffffffffffff', this.ansChecked);
       }
     }
     if(check === true) {

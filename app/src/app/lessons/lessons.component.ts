@@ -48,10 +48,8 @@ export class LessonsComponent implements OnInit {
   lessonList(chapter) {
     if (chapter) {
       this.display = "none";
-      let entid = localStorage.getItem('Orgnisation_id');
-      console.log('ent', entid);
-      console.log('chapter', chapter);
-      this.router.navigate(['lessonlist', chapter, 12333]);
+      let entid = localStorage.getItem('enterpriseId');
+      this.router.navigate(['lessonlist', chapter, entid]);
     } else {
       this.display = "block";
       //alert("Please First select any chapter");

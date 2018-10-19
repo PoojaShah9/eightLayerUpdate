@@ -60,16 +60,15 @@
                       <tr *ngFor="let chapter of chapterData">
                         <td>{{currentChapter.chapters_name}}</td>
                         <td>{{chapter.lesson_name}}</td>
-                        <td *ngIf="chapter.lessonData; else addDate">{{chapter.lessonData.scheduled_date}}
-                        </td>
+                        <td *ngIf="chapter.lessonData; else addDate">{{chapter.lessonData.scheduled_date}}</td>
+                        <td *ngIf="chapter.lessonData"></td>
                         <ng-template #addDate>
                           <td><span>-</span></td>
+                          <td>
+                            <i title="Add Lesson Schedule" style="cursor: pointer" (click)="createLessonSchedule(chapter)"
+                               class="fa fa-plus"></i>
+                          </td>
                         </ng-template>
-                        <td>
-                          <i title="Add Lesson Schedule" style="cursor: pointer" disabled="chapter.lessonData;" (click)="createLessonSchedule(chapter)"
-                             class="fa fa-plus"></i>
-                          &nbsp;
-                        </td>
                       </tr>
                       </tbody>
                     </table>
@@ -90,34 +89,21 @@
             <div class="row padding-10">
               <div class="panel panel-primary">
                 <div class="panel-heading">Quize Schedule
-                  <i class="fa fa-plus" (click)="createQuizeSchedule()"></i>
+                  <i class="fa fa-plus pull-right" (click)="createQuizeSchedule()"></i>
                 </div>
                 <div class="panel-body">
                   <div class="table-responsive padding-10">
                     <table class="table table-bordered text-left">
                       <thead>
                       <tr>
-                        <th>Lesson Id</th>
                         <th>Chapter Name</th>
-                        <th>Lesson Name</th>
                         <th>Schedule Date</th>
-                        <th>Action</th>
                       </tr>
                       </thead>
                       <tbody>
                       <tr *ngFor="let quize of quizeData">
-                        <td>{{quize.lesson_id}}</td>
                         <td>{{currentChapter.chapters_name}}</td>
-                        <td>{{quize.lesson_name}}</td>
-                        <td *ngIf="quize.lesson_schedule; else addDate">{{quize.lesson_schedule.scheduled_date}}
-                        </td>
-                        <ng-template #addDate>
-                          <td><span>-</span></td>
-                        </ng-template>
-                        <td>
-                          <i title="Add Lesson Schedule" style="cursor: pointer" (click)="addQuizeSchedule(quize)"
-                             class="fa fa-plus"></i>                          &nbsp;
-                        </td>
+                        <td>{{quize.scheduled_date}}</td>
                       </tr>
                       </tbody>
                     </table>
@@ -145,20 +131,20 @@
       <div class="modal-body">
         <div class="form-group">
           <label>Chapter Name</label>
-          <input type="text" class="form-control" name="chapters_name" [ngModel]="editLessonData.chapters_name">
+          <input type="text" class="form-control" name="chapters_name" readonly [ngModel]="editLessonData.chapters_name">
         </div>
         <div class="form-group">
           <label>Enterprise Name</label>
-          <input type="text" class="form-control" name="entname" [ngModel]="editLessonData.entname">
+          <input type="text" class="form-control" name="entname" readonly [ngModel]="editLessonData.entname">
         </div>
         <div class="form-group">
           <label>Lesson Name</label>
-          <input type="text" class="form-control" name="lesson_name" [ngModel]="editLessonData.lesson_name">
+          <input type="text" class="form-control" name="lesson_name" readonly [ngModel]="editLessonData.lesson_name">
         </div>
         <div class="form-group">
           <label>Chapter Lesson</label>
           <div>
-            <textarea name="lesson_detail" rows="5" cols="50" style="color: black"
+            <textarea name="lesson_detail" rows="5" cols="50" style="color: black" readonly
                       [ngModel]="editLessonData.lesson_detail"></textarea>
           </div>
         </div>
@@ -189,26 +175,15 @@
       <div class="modal-body">
         <div class="form-group">
           <label>Chapter Name</label>
-          <input type="text" class="form-control" name="chapters_name" [ngModel]="editLessonData.chapters_name">
+          <input type="text" class="form-control" name="chapters_name" [ngModel]="editQuizeData.chapters_name">
         </div>
         <div class="form-group">
           <label>Enterprise Name</label>
-          <input type="text" class="form-control" name="entname" [ngModel]="editLessonData.entname">
-        </div>
-        <div class="form-group">
-          <label>Lesson Name</label>
-          <input type="text" class="form-control" name="lesson_name" [ngModel]="editLessonData.lesson_name">
-        </div>
-        <div class="form-group">
-          <label>Chapter Lesson</label>
-          <div>
-            <textarea name="lesson_detail" rows="5" cols="50" style="color: black;"
-                      [ngModel]="editLessonData.lesson_detail"></textarea>
-          </div>
+          <input type="text" class="form-control" name="entname" [ngModel]="editQuizeData.entname">
         </div>
         <div class="form-group">
           <label>Schedule Date</label>
-          <input type="date" class="form-control" name="scheduled_date" #qscheduled_date [ngModel]="editLessonData.scheduled_date">
+          <input type="date" class="form-control" name="scheduled_date" #qscheduled_date [ngModel]="editQuizeData.scheduled_date">
         </div>
       </div>
       <div class="modal-footer">

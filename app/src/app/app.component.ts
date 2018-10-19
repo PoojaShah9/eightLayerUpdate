@@ -38,6 +38,7 @@ export class AppComponent implements OnInit  {
       }
     });
     this.notificationService.getQuizSchedule(this.entId).subscribe(data => {
+      console.log('dataaaaaaaaa', data);
       if(data) {
         if (data.body.data.length !== 0) {
           new notification('Quize Notification', "There is a quize prepared and ready for you." +

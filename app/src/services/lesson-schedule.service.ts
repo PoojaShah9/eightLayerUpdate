@@ -15,7 +15,7 @@ export class LessonScheduleService {
   }
 
   getQuizData(entid, chapterid) {
-   return this.httpClient.get<any>("https://gvb0azqv1e.execute-api.us-east-1.amazonaws.com/dev/quizeschedule?entid=" + entid + "&chapter_code=" + chapterid );
+   return this.httpClient.get<any>("https://gvb0azqv1e.execute-api.us-east-1.amazonaws.com/dev/quizeschedule?entid=" + entid + "&lessons_included=" + chapterid );
   }
 
   addQuizData(data) {

@@ -20,9 +20,9 @@ export class ClientsideComponent implements OnInit {
     })
     .subscribe(data => {
       
-      this.detailsData = data
-      
-      this.userName =  this.detailsData.data.user_name
+      this.detailsData = data;
+
+      this.userName =  this.detailsData.data.user_name;
      // alert("fro client side "+this.detailsData.data.userid)
       localStorage.setItem("userId", this.detailsData.data.userid);
       localStorage.setItem("enterpriseId", this.detailsData.data.entid);
