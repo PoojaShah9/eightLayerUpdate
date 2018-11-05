@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {LessonScheduleService} from "../../services/lesson-schedule.service";
+import {QuizService} from "../../services/quiz.service";
 import {parseHttpResponse} from "selenium-webdriver/http";
 
 @Component({
@@ -12,7 +12,6 @@ export class ScheduleComponent implements OnInit {
 
   showSpinner: boolean = false;
   chapterData = [];
-  display = "none";
   quizePopup = "none";
   selectedEntName;
   selectedchapterName;
@@ -29,7 +28,7 @@ export class ScheduleComponent implements OnInit {
 
   @ViewChild('scheduled_date') chapterScheduleDate;
   constructor(private httpClient: HttpClient,
-              private lessonScheduleService: LessonScheduleService) { }
+              private lessonScheduleService: QuizService) { }
 
   ngOnInit() {
     this.showSpinner = true;
@@ -77,41 +76,11 @@ export class ScheduleComponent implements OnInit {
     });
     console.log('chapterid', this.chapterid);
     this.showSpinner = true;
-    this.getChapterdata();
-
     this.getQuizedata()
   }
 
-  createLessonSchedule(data) {
-    this.display = 'block';
-    this.editLessonData = data;
-    this.editLessonData.chapters_name = this.currentChapter.chapters_name;
-    this.editLessonData.entname = this.currentent.entname;
-  }
   close(){
-    this.display = "none";
     this.quizePopup = 'none';
-  }
-
-  submitLessonSchedule(data,sDate) {
-    let lessonScheduleData = {
-        "chapter_code": data.chapter_code,
-        "chapter_lesson": data.lesson_detail,
-        "chapters_name": data.chapters_name,
-        "entid": this.currentent.entid,
-        "scheduled_date": sDate,
-        "lesson_no": data.lesson_no,
-        "lesson_code": data.lesson_code
-      };
-    this.lessonScheduleService.addLessonSchedule(lessonScheduleData)
-      .subscribe((response) => {
-        console.log(response);
-        this.chapterScheduleDate.nativeElement = '';
-        this.getChapterdata();
-        alert('Lesson Schedule Successfully.');
-      });
-    this.editLessonData = [];
-    this.display = 'none';
   }
 
   createQuizeSchedule() {
@@ -121,6 +90,7 @@ export class ScheduleComponent implements OnInit {
     this.editQuizeData.entname = this.currentent.entname;
 
   }
+
   submitQuizeSchedule(data,qDate) {
     console.log('data', data);
     this.quizePopup = 'none';
@@ -138,18 +108,6 @@ export class ScheduleComponent implements OnInit {
         qDate ='';
         alert('Quize Schedule Successfully.');
       })
-  }
-  getChapterdata() {
-    this.lessonScheduleService.getLessonSchedule(this.entid,this.chapterid)
-      .subscribe(response => {
-        this.showSpinner = false;
-        if(response) {
-          this.chapterData = response.body.data;
-        } else {
-          this.chapterData = [];
-          alert('No Any Lesson Schedule Created');
-        }
-      });
   }
 
   getQuizedata() {

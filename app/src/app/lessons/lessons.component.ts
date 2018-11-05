@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {LessonScheduleService} from "../../services/lesson-schedule.service";
+import {QuizService} from "../../services/quiz.service";
 import {Router} from "@angular/router";
 
 @Component({
@@ -21,7 +21,7 @@ export class LessonsComponent implements OnInit {
 
 
   constructor(private httpClient: HttpClient,
-              private lessonScheduleService: LessonScheduleService,
+              private lessonScheduleService: QuizService,
               private router: Router) { }
 
   ngOnInit() {

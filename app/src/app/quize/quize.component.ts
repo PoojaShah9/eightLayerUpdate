@@ -10,7 +10,8 @@ import {FormControl, FormGroup, FormArray, FormBuilder, Validators} from '@angul
 import {ajaxGetJSON} from "rxjs/observable/dom/AjaxObservable";
 import {yellow} from "@angular-devkit/core/src/terminal/colors";
 import {el} from "@angular/platform-browser/testing/src/browser_util";
-import {LessonScheduleService} from "../../services/lesson-schedule.service";
+import {QuizService} from "../../services/quiz.service";
+import {QuestionService} from "../../services/question.service";
 
 
 @Component({
@@ -43,24 +44,19 @@ export class QuizeComponent implements OnInit {
   currentType: any
   isValid: boolean = true;
   type2Data = [];
-  finalLessonData: any
-  finalLessonDataName: any;
   myValue: any;
   currentChapterCode: any
   selection;
   QuizScheduleId: any
   userLevel: any
-  type2DynamicData: any;
   quizeIdData: any;
   isAvailable = true;
   redClassBool = true;
   finalType2Answers = []
   finalType2Index = []
-  type2Index: any;
   questionSection: boolean = true;
   disableQuestion: boolean = false;
   isFound: boolean = true;
-  private saveUsername: boolean = true;
   public data;
   ratingModelShow: boolean = false;
   ratingClicked: any;
@@ -79,18 +75,29 @@ export class QuizeComponent implements OnInit {
   questionDisable = false;
   queDetail = [];
   selectedAns = [];
-  remainQue = 0;
   ansChecked = [];
-  constructor(private httpClient: HttpClient, private _fb: FormBuilder, private router: Router,
-              private lessonScheduleService: LessonScheduleService) {
+  lessonSection = true;
+  chapter_no;
+  lesson_data: any = [];
+  scheduledLesson: any = [];
+  availQuiz = false;
+  constructor(private httpClient: HttpClient, private _fb: FormBuilder,
+              private quizService: QuizService,
+              private questionService: QuestionService) {
+  }
 
-
+  backEvent() {
+    this.availQuiz = false;
+    this.questionSection = true;
+    this.lessonSection = true;
   }
 
   // Quize start
   quizStart(quizScheduleId) {
     console.log("quizScheduleId = " + quizScheduleId);
-    this.myIndex = !this.myIndex
+    this.myIndex = !this.myIndex;
+    this.availQuiz = true;
+    this.lessonSection = true;
     this.questionSection = false;
     this.showSpinner = true;
     this.userID = localStorage.getItem("userId");
@@ -106,67 +113,90 @@ export class QuizeComponent implements OnInit {
         )
       }
     ).subscribe((data: any) => {
-      this.httpClient.get('https://o9dzztjg31.execute-api.us-east-1.amazonaws.com/dev/schedules/questions/' + this.entId + '/' + quizScheduleId + '',
-        {
-          headers: new HttpHeaders().set('accesstoken', localStorage.getItem("accessToken"))
-        }).subscribe(data => {
-        this.quizeQuestion = data
-        console.log("i am calling-------------------->",data);
-        /*that is giving number of answer*/
-        this.option = 0
+      this.showSpinner = true;
+      this.questionService.getQuestion(this.userID, this.chapter_no)
+        .subscribe(response => {
+          console.log('response',response);
+          this.quizeQuestion = response.body;
+          console.log("i am calling-------------------->",this.quizeQuestion);
+          this.option = 0;
+          this.currentType = this.quizeQuestion.data[0].question_type;
+          this.currentChapterCode = this.quizeQuestion.data[0].chapter_code;
+          /*start show lessons*/
 
-        this.currentType = this.quizeQuestion.data[0].question_type;
-        this.currentChapterCode = this.quizeQuestion.data[0].chapter_code;
-        console.log()
-        /*start show lessons*/
-        this.showSpinner = true;
+          if (this.currentType == "1") {
+
+            this.isValid = true;
+          } else {
+            this.isValid = false;
+          }
+
+          for (data in this.quizeQuestion.data[0].question_options) {
+            this.option = this.option + 1
+            this.answerData[this.option - 1] = this.quizeQuestion.data[0].question_options[this.option - 1].name
+          }
+
+          /*this is give the answer*/
+
+          this.Qlength = this.quizeQuestion.data.length;
+          this.myQuizquestion = this.quizeQuestion.data[0].question;
+          this.showSpinner = false;
+        });
+      // this.httpClient.get('https://o9dzztjg31.execute-api.us-east-1.amazonaws.com/dev/schedules/questions/' + this.entId + '/' + quizScheduleId + '',
+      //   {
+      //     headers: new HttpHeaders().set('accesstoken', localStorage.getItem("accessToken"))
+      //   }).subscribe(data => {
+        // this.quizeQuestion = data
+        // console.log("i am calling-------------------->",data);
+        // /*that is giving number of answer*/
+        // this.option = 0
+        // this.currentType = this.quizeQuestion.data[0].question_type;
+        // this.currentChapterCode = this.quizeQuestion.data[0].chapter_code;
+        // /*start show lessons*/
+        // this.showSpinner = true;
         this.entId = localStorage.getItem("enterpriseId");
 
-        this.httpClient.get('https://g3052kpia0.execute-api.us-east-1.amazonaws.com/dev/chapters/' + this.currentChapterCode,
-          {
-            headers: new HttpHeaders().set('accesstoken', localStorage.getItem("accessToken"))
-          }).subscribe(data => {
+        // this.httpClient.get('https://g3052kpia0.execute-api.us-east-1.amazonaws.com/dev/chapters/' + this.currentChapterCode,
+        //   {
+        //     headers: new HttpHeaders().set('accesstoken', localStorage.getItem("accessToken"))
+        //   }).subscribe(data => {
+        //
+        //   let lessonData;
+        //   lessonData = data
+        //   console.log(lessonData);
+        //   this.finalLessonData = lessonData.data.chapter_lesson;
+        //   this.finalLessonDataName = lessonData.data.chapters_name;
+        //
+        //   this.showSpinner = false;
+        //   //this.Edata = Array.of(this.Edata);
+        // }, (error: any) => {
+        //
+        //   console.log("error = " + error);
+        //
+        // })
+        // /*end show lessons*/
 
-          let lessonData;
-          lessonData = data
-          console.log(lessonData);
-          this.finalLessonData = lessonData.data.chapter_lesson
-          this.finalLessonDataName = lessonData.data.chapters_name
-
-          this.showSpinner = false;
-          //this.Edata = Array.of(this.Edata);
-        }, (error: any) => {
-
-          console.log("error = " + error);
-
-        })
-        /*end show lessons*/
-
-        if (this.currentType == "1") {
-
-          this.isValid = true;
-        } else {
-
-          this.isValid = false;
-
-        }
-        for (data in this.quizeQuestion.data[0].question_options) {
-
-
-          this.option = this.option + 1
-          this.answerData[this.option - 1] = this.quizeQuestion.data[0].question_options[this.option - 1].name
-
-        }
-
-        /*this is give the answer*/
-
-        this.Qlength = this.quizeQuestion.data.length;
-        this.myQuizquestion = this.quizeQuestion.data[0].question;
+        // if (this.currentType == "1") {
+        //
+        //   this.isValid = true;
+        // } else {
+        //   this.isValid = false;
+        //
+        // }
+        // for (data in this.quizeQuestion.data[0].question_options) {
+        //   this.option = this.option + 1
+        //   this.answerData[this.option - 1] = this.quizeQuestion.data[0].question_options[this.option - 1].name
+        // }
+        //
+        // /*this is give the answer*/
+        //
+        // this.Qlength = this.quizeQuestion.data.length;
+        // this.myQuizquestion = this.quizeQuestion.data[0].question;
         //this.quizStatus = "Running"
         this.showSpinner = false;
-      }, (error: any) => {
-        console.log("error in inner = " + error.message);
-      })
+      // }, (error: any) => {
+      //   console.log("error in inner = " + error.message);
+      // })
       this.showSpinner = false;
 
     }, (error: any) => {
@@ -177,12 +207,14 @@ export class QuizeComponent implements OnInit {
 
   //for Question increment
   questionNext() {
+    this.p = this.p + 1;
     this.currentAns = '';
     this.entId = localStorage.getItem("enterpriseId");
     this.disableQuestion = false;
     this.display = 'none';
     this.count = this.count + 1;
-    if (this.count >= this.Qlength) {
+    this.attemptQue = this.attemptQue + 1;
+    if (this.attemptQue === this.Qlength) {
       this.userID = localStorage.getItem("userId");
 
       //for complete status
@@ -265,9 +297,8 @@ export class QuizeComponent implements OnInit {
       this.questionSection = true;
 
     } else {
+
       for(let i=0; i< this.question.length; i++) {
-        this.attemptQue = this.attemptQue + 1;
-        this.remainQue = this.Qlength -1;
         if(this.question[i] === this.quizeQuestion.data[this.count].question_code) {
           this.questionDisable = true;
         }
@@ -299,11 +330,14 @@ export class QuizeComponent implements OnInit {
 
   }
 
-  selectedAnswer(answer, index, target) {
-    console.log("target", target);
+  selectedAnswer(answer, index) {
+    alert('in function');
     this.myValue = answer
+    console.log("answer", answer);
     this.myIndex = index
+    console.log("index", index);
     this.currentAns = answer
+    console.log("this.currentAns", this.currentAns);
   }
 
   selectedAnswertype2(answer: string, isChecked, finalIndex) {
@@ -377,10 +411,10 @@ export class QuizeComponent implements OnInit {
     return answer === this;
   }
 
-
   submitAnswer() {
     let ansObj = {};
-    if (this.type2Answer === undefined) {
+
+    if (this.type2Answer === undefined && this.myValue === undefined) {
       alert('Select Answer')
       this.disableQuestion = false;
     } else {
@@ -529,7 +563,7 @@ export class QuizeComponent implements OnInit {
           }];
           this.selectedAns.push(this.queDetail);
           /*type 2 save answer*/
-          console.log("finallllllll  answerrr  = ", ansObj);
+          console.log("final  answerrr  = ", ansObj);
           this.httpClient.post('https://36mxqyy77a.execute-api.us-east-1.amazonaws.com/dev/users/' + this.userID + '/questions/' + this.quizeQuestion.data[this.count].question_code + '/useranswers',
             JSON.stringify({
               "answer":
@@ -583,8 +617,32 @@ export class QuizeComponent implements OnInit {
     return new Array(i);
   }
 
+  showLesson(chapter_code) {
+    console.log('chapter_code',chapter_code);
+    this.httpClient.get<any>('https://g3052kpia0.execute-api.us-east-1.amazonaws.com/dev/chapters/' + chapter_code,
+      {
+        headers: new HttpHeaders().set('accesstoken', localStorage.getItem("accessToken"))
+      }).subscribe(response => {
+      this.lesson_data = response.data;
+      console.log('lessonData', this.lesson_data);
+      this.chapter_no = this.lesson_data.chapter_code;
+      this.lessonSection = false;
+      this.availQuiz = true;
+      this.showSpinner = false;
+      //this.Edata = Array.of(this.Edata);
+    }, (error: any) => {
+
+      console.log("error = " + error);
+
+    });
+  }
+
   ngOnInit() {
     this.showSpinner = true;
+    this.quizService.getChapterList()
+      .subscribe(response => {
+        this.scheduledLesson = response.body.data;
+      });
     this.entId = localStorage.getItem("enterpriseId");
     this.httpClient.get('https://o9dzztjg31.execute-api.us-east-1.amazonaws.com/dev/schedules/quizzes/' + this.entId,
       {
@@ -593,22 +651,6 @@ export class QuizeComponent implements OnInit {
       console.log("quize data =====>", data);
       this.quizeData = data;
       this.chapterCode = this.quizeData.data[0].lessons_included[0];
-      this.httpClient.get('https://g3052kpia0.execute-api.us-east-1.amazonaws.com/dev/chapters/' + this.chapterCode,
-        {
-          headers: new HttpHeaders().set('accesstoken', localStorage.getItem("accessToken"))
-        }).subscribe(data => {
-        let lessonData;
-        lessonData = data;
-        this.finalLessonData = lessonData.data.chapter_lesson;
-        this.finalLessonDataName = lessonData.data.chapters_name;
-
-        this.showSpinner = false;
-        //this.Edata = Array.of(this.Edata);
-      }, (error: any) => {
-
-        console.log("error = " + error);
-
-      });
       if (this.quizeData.status == "failed") {
         alert('you have no quiz scheduled right now..!');
       } else {

@@ -1,10 +1,11 @@
 //import { file } from '../.cache/typescript/2.6/node_modules/@types/babel-types';
-const {app, BrowserWindow, Tray} = require('electron')
+const {app, BrowserWindow, Tray, ipcMain} = require('electron')
 var url = require('url');
 var path = require('path');
 var AutoLaunch = require('auto-launch');
 const {autoUpdater} = require("electron-updater");
 const log = require('electron-log');
+// window.ipcRenderer = require('electron').ipcRenderer;
 let tray = null;
 let win;
 // SQLite
@@ -86,7 +87,6 @@ app.on('browser-window-created', function (e, window) {
   window.setMenu(null);
 });
 
-
 function sendStatusToWindow(text) {
   log.info(text);
   win.webContents.send('message', text);
@@ -115,4 +115,8 @@ autoUpdater.on('update-downloaded', (info) => {
 });
 app.on('ready', function()  {
   autoUpdater.checkForUpdatesAndNotify();
+});
+
+ipcMain.on('show-about-window-event', function() {
+  win.show();
 });

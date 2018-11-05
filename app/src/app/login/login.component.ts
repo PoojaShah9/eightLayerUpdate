@@ -125,7 +125,7 @@ export class LoginComponent implements OnInit {
 
   logInData(): any {
     this.showSpinner = true;
-    console.log("name = " + this.email + " Password value = " + this.password + " entid = " + "12333");
+    console.log("name = " + this.email + " Password value = " + this.password + " entid = " + localStorage.getItem("enterpriseId"));
     this.httpClient.post("https://g3052kpia0.execute-api.us-east-1.amazonaws.com/dev/users/signin/",
       {
         // email:'sampleapp53@gmail.com',
@@ -134,8 +134,8 @@ export class LoginComponent implements OnInit {
 
         email: this.email,
         password: this.password,
-        // entid: localStorage.getItem("Orgnisation_id")
-        entid: "12333"
+        entid: localStorage.getItem("enterpriseId")
+        // entid: "12333"
       }).subscribe((data: any) => {
       localStorage.setItem("accessToken", data.accessToken);
       this.httpClient.get('https://o9dzztjg31.execute-api.us-east-1.amazonaws.com/dev/userdetails',

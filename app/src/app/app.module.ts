@@ -25,7 +25,7 @@ import { ReportsComponent } from './reports/reports.component';
 import { ChaptersComponent } from './chapters/chapters.component';
 import { Questiontype3Component } from './questiontype3/questiontype3.component';
 import { Questiontype1Component } from './questiontype1/questiontype1.component';
-import { QuestionListComponent } from './question-list/question-list.component';
+import {QuestionListComponent, UniquePipe} from './question-list/question-list.component';
 import { Questiontype2Component } from './questiontype2/questiontype2.component';
 import { ClientsideComponent } from './clientside/clientside.component';
 //import { ClienhomeComponent } from './clienhome/clienhome.component';
@@ -43,11 +43,13 @@ import {CloneService} from "../services/clone.service";
 import {NotificationService} from "../services/notification.service";
 import {NgxPaginationModule} from 'ngx-pagination';
 import { ScheduleComponent } from './schedule/schedule.component';
-import {LessonScheduleService} from "../services/lesson-schedule.service";
+import {QuizService} from "../services/quiz.service";
 import {LessonListComponent} from "./lesson-list/lesson-list.component";
+import {QuestionService} from "../services/question.service";
 declare var $: any;
 @NgModule({
   declarations: [
+    UniquePipe,
     AppComponent,
     HomeComponent,
     ClientEnterpriseComponent,
@@ -91,7 +93,7 @@ declare var $: any;
     ImageUploadModule.forRoot(),
     NgxPaginationModule
   ],
-  providers: [ EnterpriseDataService, FileService,ForgotPasswordService, CloneService, NotificationService, LessonScheduleService ],
+  providers: [ UniquePipe, EnterpriseDataService, FileService, ForgotPasswordService, CloneService, NotificationService, QuizService, QuestionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

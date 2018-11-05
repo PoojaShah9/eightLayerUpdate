@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ObjNgFor } from '../client-enterprise/myPipe';
-import {LessonScheduleService} from "../../services/lesson-schedule.service";
+import {QuizService} from "../../services/quiz.service";
 // this.router.navigateByUrl('/');
 @Component({
   selector: 'app-chapters',
@@ -41,7 +41,7 @@ export class ChaptersComponent implements OnInit {
   redClassBool: boolean = true;
   lessonData: any=[];
   constructor(private httpClient: HttpClient, private router: Router,
-              private lessonScheduleService: LessonScheduleService) { }
+              private lessonScheduleService: QuizService) { }
 
 
 
@@ -258,4 +258,14 @@ export class ChaptersComponent implements OnInit {
       )
   }
 
+  viewLesson(chapter) {
+    if (chapter) {
+      this.display = "none";
+      let entid = localStorage.getItem('enterpriseId');
+      this.router.navigate(['lessonlist', chapter, entid]);
+    } else {
+      this.display = "block";
+      //alert("Please First select any chapter");
+    }
+  }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "../../../node_modules/@angular/common/http";
 import {ActivatedRoute} from "@angular/router";
-import {LessonScheduleService} from "../../services/lesson-schedule.service";
+import {QuizService} from "../../services/quiz.service";
 
 @Component({
   selector: 'app-lesson-list',
@@ -17,7 +17,7 @@ export class LessonListComponent implements OnInit {
   chapname:any;
   lessonData: any = [];
   constructor(private httpClient: HttpClient,private route: ActivatedRoute,
-              private lessonScheduleService: LessonScheduleService) { }
+              private lessonScheduleService: QuizService) { }
   ngOnInit() {
     this.showSpinner = true;
     this.sub = this.route.params.subscribe(params => {
@@ -26,10 +26,16 @@ export class LessonListComponent implements OnInit {
     });
     this.lessonScheduleService.getLessonSchedule(this.entid,this.chapterId)
       .subscribe((response) => {
-        console.log('response', response);
-        this.lessonData = response.body.data;
-        this.showSpinner = false;
-      })
+        if(response) {
+          console.log('response', response);
+          this.lessonData = response.body.data;
+          this.showSpinner = false;
+        } else {
+          alert('No any lesson is created for this chapter.');
+        }
+      });
+
+
 
   }
 

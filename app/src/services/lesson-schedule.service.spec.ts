@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { LessonScheduleService } from './lesson-schedule.service';
+import { QuizService } from './quiz.service';
 
-describe('LessonScheduleService', () => {
+describe('QuizService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [LessonScheduleService]
+      providers: [QuizService]
     });
   });
 
-  it('should be created', inject([LessonScheduleService], (service: LessonScheduleService) => {
+  it('should be created', inject([QuizService], (service: QuizService) => {
     expect(service).toBeTruthy();
   }));
 });

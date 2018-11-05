@@ -30,6 +30,7 @@ export class ClientEnterpriseComponent implements OnInit {
  enterPriseText:any;
  errorMessage:any;
  newEntName:any;
+  newQueValue:any;
  newstartDate:any;
  newEndDate:any;
  focusedLesson:any;
@@ -47,7 +48,8 @@ showSpinner:boolean = false;
 message:string;
 entDeleteName:any;
 display='none';
-enterpriseText:any
+enterpriseText:any;
+no_of_question: any;
 redClassBool:boolean = true;
 childModal:boolean = false;
 startDate:any
@@ -57,20 +59,21 @@ toDate:any
 
   constructor(private httpClient: HttpClient, private EnterpriseService: EnterpriseDataService, private router: Router, private eleRef: ElementRef) {}
 //add
-  newInputValue(entName:string):any
+  newInputValue(entName, QueValue ):any
   {
-     if(entName){
+     if(entName && QueValue){
 
       //this.childModal= true;
       this.display1 = "none";
       console.log("this.enterpriseText =",this.enterpriseText)
       this.showSpinner = true;
-      console.log("myInpurValue = ", entName, "this.fromDate",this.fromDate, "this.toDate",this.toDate);
+      console.log("myInpurValue = ", entName, "no_of_question = ", QueValue, "this.fromDate",this.fromDate, "this.toDate",this.toDate);
       //alert("token = "+sessionStorage.getItem("accessToken"));
        this.httpClient.post(
-        'https://g3052kpia0.execute-api.us-east-1.amazonaws.com/dev/enterprises', 
+        'https://g3052kpia0.execute-api.us-east-1.amazonaws.com/dev/enterprises',
         JSON.stringify({
           entname:entName,
+          no_of_question: QueValue,
           start_date:this.fromDate,
           end_date:this.toDate,
           employee_settings: {
@@ -139,13 +142,14 @@ toDate:any
                             headers: new HttpHeaders().set('accesstoken', localStorage.getItem("accessToken"))
                           }).subscribe(
                             result => {
-                              this.editData = result
+                              this.editData = result;
                               console.log(this.editData.data.entname);
-
+                              console.log('no_of_question',this.editData.data.no_of_question);
                               this.newEntName = this.editData.data.entname;
+                              this.newQueValue = this.editData.data.no_of_question;
                              // alert("this.newEntName = "+this.newEntName);
-                              // this.newstartDate = this.editData.data.end_date;
-                              // this.newEndDate = this.editData.data.start_date;
+                              this.newstartDate = this.editData.data.end_date;
+                              this.newEndDate = this.editData.data.start_date;
                                this.currentId = this.editData.data.entid;
                               console.log("currentId in edit", this.currentId);
                               // this.activeUserCount = this.editData.data.license.activeusercount;
@@ -180,6 +184,7 @@ toDate:any
         'https://g3052kpia0.execute-api.us-east-1.amazonaws.com/dev/enterprises/'+this.currentId, 
         JSON.stringify({
           entname : this.newEntName,
+          no_of_question: this.newQueValue,
           license: {
               "activeusercount": this.activeUserCount,
               "licensecount": this.licenseCount,

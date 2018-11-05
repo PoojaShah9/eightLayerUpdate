@@ -36,49 +36,6 @@
           </div>
         </article>
       </div>
-      <!--Lesson Schedule-->
-      <div class="row">
-        <!-- NEW WIDGET START -->
-        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <!-- widget content -->
-          <div class="widget-body">
-            <div class="row padding-10">
-              <div class="panel panel-primary">
-                <div class="panel-heading">Lesson Schedule</div>
-                <div class="panel-body">
-                  <div class="table-responsive padding-10">
-                    <table class="table table-bordered text-left">
-                      <thead>
-                      <tr>
-                        <th>Chapter Name</th>
-                        <th>Lesson Name</th>
-                        <th>Schedule Date</th>
-                        <th>Action</th>
-                      </tr>
-                      </thead>
-                      <tbody>
-                      <tr *ngFor="let chapter of chapterData">
-                        <td>{{currentChapter.chapters_name}}</td>
-                        <td>{{chapter.lesson_name}}</td>
-                        <td *ngIf="chapter.lessonData; else addDate">{{chapter.lessonData.scheduled_date}}</td>
-                        <td *ngIf="chapter.lessonData"></td>
-                        <ng-template #addDate>
-                          <td><span>-</span></td>
-                          <td>
-                            <i title="Add Lesson Schedule" style="cursor: pointer" (click)="createLessonSchedule(chapter)"
-                               class="fa fa-plus"></i>
-                          </td>
-                        </ng-template>
-                      </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
-      </div>
 
       <!--Quize Schedule-->
       <div class="row">
@@ -97,11 +54,15 @@
                       <thead>
                       <tr>
                         <th>Chapter Name</th>
+                        <th>Quiz Availibilty</th>
+                        <th>Quiz Duration</th>
                         <th>Schedule Date</th>
                       </tr>
                       </thead>
                       <tbody>
                       <tr *ngFor="let quize of quizeData">
+                        <td>{{currentChapter.chapters_name}}</td>
+                        <td>{{currentChapter.chapters_name}}</td>
                         <td>{{currentChapter.chapters_name}}</td>
                         <td>{{quize.scheduled_date}}</td>
                       </tr>
@@ -116,51 +77,6 @@
       </div>
     </section>
   </div>
-</div>
-
-
-<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" aria-label="Close" (click)="close()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <h4 class="modal-title">Lesson Schedule</h4>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
-          <label>Chapter Name</label>
-          <input type="text" class="form-control" name="chapters_name" readonly [ngModel]="editLessonData.chapters_name">
-        </div>
-        <div class="form-group">
-          <label>Enterprise Name</label>
-          <input type="text" class="form-control" name="entname" readonly [ngModel]="editLessonData.entname">
-        </div>
-        <div class="form-group">
-          <label>Lesson Name</label>
-          <input type="text" class="form-control" name="lesson_name" readonly [ngModel]="editLessonData.lesson_name">
-        </div>
-        <div class="form-group">
-          <label>Chapter Lesson</label>
-          <div>
-            <textarea name="lesson_detail" rows="5" cols="50" style="color: black" readonly
-                      [ngModel]="editLessonData.lesson_detail"></textarea>
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Schedule Date</label>
-          <input type="date" class="form-control" name="scheduled_date" #scheduled_date [ngModel]="editLessonData.scheduled_date">
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-success bg-color-green" (click)="submitLessonSchedule(editLessonData,scheduled_date.value)">Submit</button>
-        <button type="button" class="btn btn-default" (click)="close()">Close</button>
-      </div>
-    </div>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
 </div>
 
 <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':quizePopup}">
@@ -179,6 +95,14 @@
         </div>
         <div class="form-group">
           <label>Enterprise Name</label>
+          <input type="text" class="form-control" name="entname" [ngModel]="editQuizeData.entname">
+        </div>
+        <div class="form-group">
+          <label>Quiz Availibility</label>
+          <input type="text" class="form-control" name="entname" [ngModel]="editQuizeData.entname">
+        </div>
+        <div class="form-group">
+          <label>Quiz Duration</label>
           <input type="text" class="form-control" name="entname" [ngModel]="editQuizeData.entname">
         </div>
         <div class="form-group">
