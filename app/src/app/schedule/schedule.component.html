@@ -54,7 +54,6 @@
                       <thead>
                       <tr>
                         <th>Chapter Name</th>
-                        <th>Quiz Availibilty</th>
                         <th>Quiz Duration</th>
                         <th>Schedule Date</th>
                       </tr>
@@ -62,8 +61,7 @@
                       <tbody>
                       <tr *ngFor="let quize of quizeData">
                         <td>{{currentChapter.chapters_name}}</td>
-                        <td>{{currentChapter.chapters_name}}</td>
-                        <td>{{currentChapter.chapters_name}}</td>
+                        <td>{{quize.duration}}</td>
                         <td>{{quize.scheduled_date}}</td>
                       </tr>
                       </tbody>
@@ -98,20 +96,16 @@
           <input type="text" class="form-control" name="entname" [ngModel]="editQuizeData.entname">
         </div>
         <div class="form-group">
-          <label>Quiz Availibility</label>
-          <input type="text" class="form-control" name="entname" [ngModel]="editQuizeData.entname">
-        </div>
-        <div class="form-group">
           <label>Quiz Duration</label>
-          <input type="text" class="form-control" name="entname" [ngModel]="editQuizeData.entname">
+          <input type="number" class="form-control" name="duration" #qduration [ngModel]="editQuizeData.duration">
         </div>
         <div class="form-group">
           <label>Schedule Date</label>
-          <input type="date" class="form-control" name="scheduled_date" #qscheduled_date [ngModel]="editQuizeData.scheduled_date">
+          <input type="date" class="form-control" min="{{date | date:'yyyy-MM-dd'}}" name="scheduled_date" #qscheduled_date [ngModel]="editQuizeData.scheduled_date">
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-success bg-color-green" (click)="submitQuizeSchedule(editLessonData, qscheduled_date.value)">Submit</button>
+        <button type="button" class="btn btn-success bg-color-green" (click)="submitQuizeSchedule(editLessonData, qscheduled_date.value, qduration.value)">Submit</button>
         <button type="button" class="btn btn-default" (click)="close()">Close</button>
       </div>
     </div>

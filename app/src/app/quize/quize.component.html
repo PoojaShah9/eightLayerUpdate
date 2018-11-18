@@ -11,43 +11,6 @@
 
     <div id="content">
       <section>
-        <!-- row -->
-        <div class="row" *ngIf="!availQuiz">
-          <!-- NEW WIDGET START -->
-          <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
-            <div class="widget-body">
-              <div class="row padding-10">
-                <div class="table-responsive padding-10">
-                  <table class="table table-bordered text-center">
-                    <thead>
-                    <tr>
-                      <th>Chapter Name</th>
-                      <th>Action</th>
-                    </tr>
-                    </thead>
-                    <tbody *ngFor="let lData of scheduledLesson">
-                    <tr>
-
-                      <td>{{lData.lessons_included[0]}}</td>
-                      <td>
-                        <span (click)="showLesson(lData.lessons_included[0])" [class.disable]="hideIcon"
-                              style="cursor: pointer;" title="Quiz start" class="fa fa-flag-o"
-                              aria-hidden="true"></span>
-                      </td>
-                    </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-            <!-- end widget content -->
-          </article>
-          <!-- WIDGET END -->
-        </div>
-        <!-- end row -->
-      </section>
-      <section>
         <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
           <div class="col-md-12 col-sm-12 col-xs-12">
@@ -55,7 +18,7 @@
               <div class="panel-heading clearfix">
                 <h4 class="panel-title pull-left" style="padding-top: 7.5px;">Lesson</h4>
                 <div class="btn-group pull-right">
-                <span (click)="quizStart(QuizScheduleId)" [class.disable]="hideIcon"
+                <span (click)="quizStart()" [class.disable]="hideIcon"
                      class="btn btn-header" style="cursor: pointer;" aria-hidden="true">Show Quiz</span>
                 </div>
               </div>

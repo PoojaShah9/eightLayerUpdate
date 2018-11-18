@@ -81,7 +81,6 @@ export class QuestionListComponent implements OnInit {
     this.selectedQuestion = data;
     this.questionService.editQuestionConfirm(this.selectedQuestion.question_code)
       .subscribe(response => {
-        console.log('response', response);
         if (response.body.Answers === true && response.body.data.length > 0) {
           this.display = 'block';
         } else {
@@ -108,7 +107,6 @@ export class QuestionListComponent implements OnInit {
         headers: new HttpHeaders().set('accesstoken', localStorage.getItem("accessToken"))
       }).subscribe(response => {
       this.answerData = response.data[0].answer;
-      console.log('qqqqqqqqqqqqqqqqqqqq', this.answerData);
     });
   }
 
@@ -122,6 +120,7 @@ export class QuestionListComponent implements OnInit {
       .subscribe(response => {
         this.showSpinner = false;
         alert(response.body.message);
+        this.showQue = false;
         this.getQuestion();
       }, error1 => {
         alert(error1);
@@ -133,7 +132,12 @@ export class QuestionListComponent implements OnInit {
       headers: new HttpHeaders().set('accesstoken', localStorage.getItem("accessToken"))
     }).subscribe(
       result => {
-        this.qData = result.data;
+        console.log('result', result);
+        if (result.data.length >= 1) {
+          this.qData = result.data;
+        } else {
+          alert('No any question added');
+        }
         this.showSpinner = false;
       }),
       error => this.errorMessage = error;
@@ -180,12 +184,12 @@ export class QuestionListComponent implements OnInit {
       .subscribe(response => {
         this.addAnswers();
         this.getQuestion();
+        this.showQue = false;
         alert('Question update successfully.');
       })
   }
 
   getAnswer(answer: any, answerIndex: any) {
-    console.log('aaaaaaaaaaaaaaa', answer);
     if(answer === '') {
       answer = this.answerData;
     }
@@ -199,13 +203,10 @@ export class QuestionListComponent implements OnInit {
 
   addAnswers() {
     this.showSpinner = true;
-    alert('add ans');
     this.answers[this.incrementIndex]  = this.submittedAnswer;
-    if(this.answers === [] || this.answers === undefined) {
-      alert(this.answers);
+    if(this.answers.length === 0 ) {
       this.answers = this.answerData;
     }
-    console.log('aaaaaaaaaaaaaaa', this.answers);
     this.httpClient.post('https://36mxqyy77a.execute-api.us-east-1.amazonaws.com/dev/chapters/' + this.chapter_code + '/questions/' + this.question_code + '/answers',
       JSON.stringify({
         "answer": this.answers

@@ -12,6 +12,7 @@ import {yellow} from "@angular-devkit/core/src/terminal/colors";
 import {el} from "@angular/platform-browser/testing/src/browser_util";
 import {QuizService} from "../../services/quiz.service";
 import {QuestionService} from "../../services/question.service";
+import {NotificationService} from "../../services/notification.service";
 
 
 @Component({
@@ -76,35 +77,40 @@ export class QuizeComponent implements OnInit {
   queDetail = [];
   selectedAns = [];
   ansChecked = [];
-  lessonSection = true;
+  lessonSection = false;
   chapter_no;
   lesson_data: any = [];
   scheduledLesson: any = [];
   availQuiz = false;
+  quizScheduleId;
+  showLevel = false;
+  duration;
   constructor(private httpClient: HttpClient, private _fb: FormBuilder,
               private quizService: QuizService,
-              private questionService: QuestionService) {
+              private questionService: QuestionService,
+              private notificationService: NotificationService) {
   }
 
   backEvent() {
-    this.availQuiz = false;
     this.questionSection = true;
-    this.lessonSection = true;
+    this.lessonSection = false;
+    this.myQuizquestion = '';
+    this.answerData = [];
   }
 
   // Quize start
-  quizStart(quizScheduleId) {
-    console.log("quizScheduleId = " + quizScheduleId);
+  quizStart() {
+    console.log("quizScheduleId = " + this.QuizScheduleId);
     this.myIndex = !this.myIndex;
     this.availQuiz = true;
     this.lessonSection = true;
     this.questionSection = false;
     this.showSpinner = true;
     this.userID = localStorage.getItem("userId");
-    this.httpClient.put('https://2gs6fkutxh.execute-api.us-east-1.amazonaws.com/dev/reports/quizzes/' + this.entId + '/users/' + localStorage.getItem("Updated_user_id") + '/' + quizScheduleId + "_" + localStorage.getItem("Updated_user_id"),
+    this.httpClient.put('https://2gs6fkutxh.execute-api.us-east-1.amazonaws.com/dev/reports/quizzes/' + this.entId + '/users/' + localStorage.getItem("Updated_user_id") + '/' + this.QuizScheduleId + "_" + localStorage.getItem("Updated_user_id"),
       JSON.stringify({
 
-        quiz_schedule_id: quizScheduleId,
+        quiz_schedule_id: this.QuizScheduleId,
         scheduled_status: "Running"
 
       }),
@@ -132,7 +138,7 @@ export class QuizeComponent implements OnInit {
           }
 
           for (data in this.quizeQuestion.data[0].question_options) {
-            this.option = this.option + 1
+            this.option = this.option + 1;
             this.answerData[this.option - 1] = this.quizeQuestion.data[0].question_options[this.option - 1].name
           }
 
@@ -233,22 +239,22 @@ export class QuizeComponent implements OnInit {
         this.ratingModelShow = true;
         /*questionsengagement*/
 
-        this.httpClient.post('https://2gs6fkutxh.execute-api.us-east-1.amazonaws.com/dev/reports/' + this.entId + '/users/' + this.userID + '/quizzes/' + this.QuizScheduleId + '/questionsengagement',
-          {},
-          {
+        // this.httpClient.post('https://2gs6fkutxh.execute-api.us-east-1.amazonaws.com/dev/reports/' + this.entId + '/users/' + this.userID + '/quizzes/' + this.QuizScheduleId + '/questionsengagement',
+        //   {},
+        //   {
+        //
+        //     headers: new HttpHeaders().set('accesstoken', localStorage.getItem("accessToken"))
+        //
+        //   }).subscribe(data => {
 
-            headers: new HttpHeaders().set('accesstoken', localStorage.getItem("accessToken"))
-
-          }).subscribe(data => {
-
-          console.log("questionsengagement is calling==>", data)
-          this.ratingModelShow = true;
+          // console.log("questionsengagement is calling==>", data)
+          // this.ratingModelShow = true;
           this.showSpinner = false;
-        }, (error: any) => {
-
-          console.log("error = " + error);
-
-        })
+        // }, (error: any) => {
+        //
+        //   console.log("error = " + error);
+        //
+        // })
         /* userlevel */
 
         this.httpClient.post('https://2gs6fkutxh.execute-api.us-east-1.amazonaws.com/dev/reports/' + this.entId + '/users/' + this.userID + '/quizzes/' + this.QuizScheduleId + '/userlevel',
@@ -258,8 +264,8 @@ export class QuizeComponent implements OnInit {
             )
           }
         ).subscribe((data: any) => {
-
-          let userLevel
+          console.log('data', data);
+          let userLevel;
           userLevel = data;
           this.userLevel = userLevel.data.user_level
           console.log("userLevel is calling==>", this.userLevel);
@@ -283,11 +289,13 @@ export class QuizeComponent implements OnInit {
 
       this.quizStatus = "Complete";
       let changeStatus = {
-        "quiz_schedule_id": this.quizeData.data[0].quiz_schedule_id,
+        "quiz_schedule_id": this.QuizScheduleId,
         "entid": parseInt(this.entId),
-        "lessons_included": this.quizeData.data[0].lessons_included,
-        "quiz_status": 1,
-        "scheduled_date": this.quizeData.data[0].scheduled_date
+        "lessons_included": this.chapterCode,
+        "quiz_status": 0,
+        "scheduled_date": this.quizeDate,
+        "duration": this.duration,
+        "chapter_name": this.lesson_Name
       };
       console.log('changeStatus', changeStatus);
       this.httpClient.post('https://gvb0azqv1e.execute-api.us-east-1.amazonaws.com/dev/changequizestatus', changeStatus)
@@ -331,13 +339,9 @@ export class QuizeComponent implements OnInit {
   }
 
   selectedAnswer(answer, index) {
-    alert('in function');
     this.myValue = answer
-    console.log("answer", answer);
     this.myIndex = index
-    console.log("index", index);
     this.currentAns = answer
-    console.log("this.currentAns", this.currentAns);
   }
 
   selectedAnswertype2(answer: string, isChecked, finalIndex) {
@@ -454,9 +458,10 @@ export class QuizeComponent implements OnInit {
             }).subscribe(data => {
 
             console.log(data);
-            this.currectAnswerdata = data
+            this.currectAnswerdata = data;
 
-            this.currectAnswer = "";
+            this.currectAnswer = [];
+            this.currectAnswer = null;
             for (let ans in this.currectAnswerdata.data[0].answer) {
 
               this.currectAnswer = this.currectAnswerdata.data[0].answer[ans]
@@ -465,11 +470,11 @@ export class QuizeComponent implements OnInit {
             if (this.currectAnswer == this.currentAns) {
 
               this.message = "Correct Answer"
-              this.currentAns = "";
+              this.currentAns = [];
             } else {
 
               this.message = "Incorrect Answer"
-              this.currentAns = "";
+              this.currentAns = [];
             }
 
 
@@ -494,38 +499,36 @@ export class QuizeComponent implements OnInit {
           {
             headers: new HttpHeaders().set('accesstoken', localStorage.getItem("accessToken"))
           }).subscribe(data => {
-          console.log("type 2 data");
+          console.log("type 2 data", data);
           this.compareData = data
-          let obj1 = {}
-          obj1 = this.compareData.data[0].answer
+          let obj1 = null;
+          obj1 = this.compareData.data[0].answer;
 
           console.log("saved answer = ", obj1);
           this.display = 'block';
           this.showSpinner = false;
-          const answer1 = [];
+          let answer1 = [];
           let obj2 = [];
           obj2 = this.type2Data
           console.log("inputed data", obj2)
           let wrong = 0;
-
           for (let key in obj1) {
 
             answer1.push(obj1[key]);
 
           }
-
           for (let i = 0; i < obj2.length; i++) {
-
-
             if (answer1.indexOf(obj2[i]) != -1) {
               console.log("found");
               this.isFound = false;
+              this.currectAnswer = [];
               this.currectAnswer = answer1;
             }
             else {
 
               console.log("not found");
               this.isFound = true;
+              this.currectAnswer = [];
               this.currectAnswer = answer1;
               wrong = wrong + 1
 
@@ -618,6 +621,7 @@ export class QuizeComponent implements OnInit {
   }
 
   showLesson(chapter_code) {
+    this.showSpinner = true;
     console.log('chapter_code',chapter_code);
     this.httpClient.get<any>('https://g3052kpia0.execute-api.us-east-1.amazonaws.com/dev/chapters/' + chapter_code,
       {
@@ -626,6 +630,12 @@ export class QuizeComponent implements OnInit {
       this.lesson_data = response.data;
       console.log('lessonData', this.lesson_data);
       this.chapter_no = this.lesson_data.chapter_code;
+      this.quizService.getQuiz(this.chapter_no)
+        .subscribe(response => {
+          this.QuizScheduleId = response.body.data[0].quiz_schedule_id;
+          console.log('response', response);
+          this.showSpinner = false;
+        });
       this.lessonSection = false;
       this.availQuiz = true;
       this.showSpinner = false;
@@ -641,28 +651,24 @@ export class QuizeComponent implements OnInit {
     this.showSpinner = true;
     this.quizService.getChapterList()
       .subscribe(response => {
-        this.scheduledLesson = response.body.data;
+        this.quizeData = response.body;
+        console.log('quizeData', this.quizeData);
+        this.quizeData.data.filter((x) => {
+          if(x.quiz_status === 0){
+            this.chapterCode = x.lessons_included;
+            let chapter_code = x.lessons_included[0];
+            this.showLesson(chapter_code);
+            this.duration = x.duration;
+            this.QuizScheduleId = x.quiz_schedule_id;
+            this.lesson_Name = x.chapter_name;
+            this.quizeDate = x.scheduled_date;
+          }
+        });
+        this.showSpinner = false;
       });
     this.entId = localStorage.getItem("enterpriseId");
-    this.httpClient.get('https://o9dzztjg31.execute-api.us-east-1.amazonaws.com/dev/schedules/quizzes/' + this.entId,
-      {
-        headers: new HttpHeaders().set('accesstoken', localStorage.getItem("accessToken"))
-      }).subscribe(data => {
-      console.log("quize data =====>", data);
-      this.quizeData = data;
-      this.chapterCode = this.quizeData.data[0].lessons_included[0];
-      if (this.quizeData.status == "failed") {
-        alert('you have no quiz scheduled right now..!');
-      } else {
-        this.QuizScheduleId = this.quizeData.data[0].quiz_schedule_id;
-        this.lesson_Name = this.quizeData.data[0].lesson_Name;
-        this.quizeDate = this.quizeData.data[0].scheduled_date;
-        this.showSpinner = false;
-      }
-    }, (error: any) => {
-      console.log("error = " + error.message);
 
-    })
+    this.showSpinner = false;
 
     this.userID = localStorage.getItem("Updated_user_id");
     console.log("this.userID", this.userID)
@@ -676,14 +682,14 @@ export class QuizeComponent implements OnInit {
         this.showSpinner = false;
       } else {
         this.showSpinner = false;
-        this.quizStart(this.quizeIdData.data[0].quiz_schedule_id);
+        this.quizStart();
 
       }
 
     }, (error: any) => {
 
       console.log("error = " + error);
-
+      this.showSpinner = false;
     })
 
     this.myForm = this._fb.group({
@@ -701,6 +707,7 @@ export class QuizeComponent implements OnInit {
 
   hideQuizepopUp() {
     this.redClassBool = true;
+    this.showLevel = false;
   }
 
   ratingComponentClick(clickObj: any): void {
@@ -721,6 +728,7 @@ export class QuizeComponent implements OnInit {
       });
     if (this.ratingClicked.submit === true) {
       this.ratingModelShow = false;
+      this.showLevel = true;
     }
 
   }

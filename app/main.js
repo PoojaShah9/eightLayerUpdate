@@ -1,5 +1,5 @@
 //import { file } from '../.cache/typescript/2.6/node_modules/@types/babel-types';
-const {app, BrowserWindow, Tray, ipcMain} = require('electron')
+const {app, BrowserWindow, Tray, ipcMain, Menu} = require('electron')
 var url = require('url');
 var path = require('path');
 var AutoLaunch = require('auto-launch');
@@ -37,8 +37,8 @@ function createWindow() {
 
   // Create the browser window.
   win = new BrowserWindow({
-    width: 1000,
-    height: 600,
+    width: 1024,
+    height: 1024,
     icon: `${__dirname}/src/assets/img/favicon/8-layer-logo-v3.png`
   });
   win.loadURL(url.format({
@@ -49,20 +49,30 @@ function createWindow() {
   }));
 //win.loadURL(`file://${__dirname}/src/index.html`)
 //win.loadURL(`http://localhost:4200/login`)
+  win.maximize();
   win.hide();
   tray = new Tray(__dirname + '/src/assets/img/favicon/8-layer-logo-v3.png');
   tray.setToolTip('EightLayerApp');
   tray.on('click', () => {
     win.isVisible() ? win.hide() : win.show()
   })
+  var contextMenu = Menu.buildFromTemplate([{
+    label: 'Quit', click: function () {
+      app.isQuiting = true;
+      app.quit()
+    }
+  }]);
+  tray.setContextMenu(contextMenu);
 //// uncomment below to open the DevTools.
-  win.webContents.openDevTools()
+  win.webContents.openDevTools();
   console.log("process.argv = " + process.argv0);
-  global.sharedObject = {prop1: process.argv0}
+  global.sharedObject = {prop1: process.argv0};
 
 // Event when the window is closed.
   win.on('closed', function () {
+    win = null;
   })
+
 }
 
 // Create window on electron intialization
@@ -113,10 +123,10 @@ autoUpdater.on('download-progress', (progressObj) => {
 autoUpdater.on('update-downloaded', (info) => {
   sendStatusToWindow('Update downloaded');
 });
-app.on('ready', function()  {
+app.on('ready', function () {
   autoUpdater.checkForUpdatesAndNotify();
 });
 
-ipcMain.on('show-about-window-event', function() {
+ipcMain.on('show-about-window-event', function () {
   win.show();
 });

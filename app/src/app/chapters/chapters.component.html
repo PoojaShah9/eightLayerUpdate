@@ -121,13 +121,13 @@
                                      placeholder="Chapter Name">
                             </div>
                             <label>lesson Number</label>
-                            <input type="number" mdInput #lessonNumbercount [ngModel]="lessonNum" class="form-control"
+                            <input type="number" mdInput #lessonNumbercount [(ngModel)]="lessonNum" class="form-control"
                                    placeholder="Lesson Number">
                           </div>
                         </div>
                         <div class="row">
                           <div class="col-md-12">
-                            <label>Lessons</label>
+                            <label>Lessons Detail</label>
                             <div>
                             <textarea mdInput #questionTypeValue [ngModel]="questionTypeVal" style="color: black;"
                                       rows="5" cols="44" placeholder="Lessons"></textarea>
@@ -149,8 +149,8 @@
         </div>
         <div class="modal-footer">
           <div class="text-right">
-            <button type="button" class="btn btn-success"
-                    (click)="addNewChapter(chapNameVal.value, questionTypeValue.value, lessonNumbercount.value)">Submit
+            <button type="button" class="btn btn-success" data-dismiss="modal"
+                    (click)="addNewChapter(chapNameVal.value, questionTypeValue.value, lessonNum)">Submit
             </button>
           </div>
         </div>
@@ -185,11 +185,6 @@
                               <input type="text" mdInput #editChapNameVal [ngModel]="editChapterName"
                                      class="form-control" placeholder="Chapter Name">
                               <input type="hidden" [ngModel]="editChaptersId">
-                            </div>
-                            <div class="form-group">
-                              <label>Lesson Name</label>
-                              <input type="text" mdInput #editLessonNameVal [ngModel]="editLessonName"
-                                     class="form-control" placeholder="Lesson Name">
                             </div>
                             <div class="form-group">
                               <label>lesson Number</label>

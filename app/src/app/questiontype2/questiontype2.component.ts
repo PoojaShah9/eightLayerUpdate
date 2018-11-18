@@ -115,8 +115,8 @@ export class Questiontype2Component implements OnInit {
         // alert("id = "+this.id);
 
         });
-
-        //alert("formData = "+formData.question_options_array.length);
+        formData.question_type = this.selectTypes;
+        console.log("question_type2 = " , formData);
          this.httpClient.post('https://36mxqyy77a.execute-api.us-east-1.amazonaws.com/dev/chapters/'+this.id+'/questions',
             formData,
           {

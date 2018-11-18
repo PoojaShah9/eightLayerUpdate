@@ -25,6 +25,7 @@ export class ScheduleComponent implements OnInit {
   onDownClick = false;
   currentent: any;
   currentChapter: any;
+  date = new Date();
 
   @ViewChild('scheduled_date') chapterScheduleDate;
   constructor(private httpClient: HttpClient,
@@ -91,7 +92,7 @@ export class ScheduleComponent implements OnInit {
 
   }
 
-  submitQuizeSchedule(data,qDate) {
+  submitQuizeSchedule(data,qDate,duration) {
     console.log('data', data);
     this.quizePopup = 'none';
     let quizeScheduleData =  {
@@ -99,7 +100,9 @@ export class ScheduleComponent implements OnInit {
       "lessons_included": [
         this.chapterid
     ],
-      "scheduled_date": qDate
+      "scheduled_date": qDate,
+      "chapter_name": this.editQuizeData.chapters_name,
+      "duration" : duration
     };
     this.lessonScheduleService.addQuizData(quizeScheduleData)
       .subscribe((response) => {
@@ -115,11 +118,13 @@ export class ScheduleComponent implements OnInit {
       .subscribe(response => {
         console.log('quizRecord', response);
         if (response.body.data.length > 0) {
-          this.showSpinner = false;
+
           this.quizeData = response.body.data;
         } else {
           this.quizeData = [];
           alert('No Any Quize Schedule Created');
-        }});
+        }
+        this.showSpinner = false;
+      });
   }
 }

@@ -28,15 +28,6 @@ export class AppComponent implements OnInit  {
   ngOnInit() {
     new notification();
     this.entId = localStorage.getItem("enterpriseId");
-    this.notificationService.getLesson(this.entId).subscribe(data => {
-      if(data) {
-        if (data.body.data.length !== 0) {
-          new notification('Lesson Notification', "There is a lesson prepared and ready for you." +
-            "Take 5 Minutes and complete the session." +
-            "Do you want to take it now?");
-        }
-      }
-    });
     this.notificationService.getQuizSchedule(this.entId).subscribe(data => {
       console.log('dataaaaaaaaa', data);
       if(data) {

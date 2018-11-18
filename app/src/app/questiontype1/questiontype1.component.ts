@@ -180,6 +180,8 @@ export class Questiontype1Component implements OnInit {
       this.showSpinner = true;
       console.log("formData",formData);
       console.log("currentType ",this.currentType);
+      formData.question_type = this.currentType;
+      console.log("formData.question_type1 ",formData);
       this.httpClient.post('https://36mxqyy77a.execute-api.us-east-1.amazonaws.com/dev/chapters/' + this.id + '/questions',
         formData,
         {
@@ -220,7 +222,8 @@ export class Questiontype1Component implements OnInit {
   }
   selectchangeforType(args) {
 
-    this.selectTypes = args
+    this.selectTypes = args;
+    console.log('ssssssssssssssssss', this.selectTypes);
     this.sub = this.route.params.subscribe(params => {
       this.id = params['lId'];
 

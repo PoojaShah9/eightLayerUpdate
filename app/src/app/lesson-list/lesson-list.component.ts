@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from "../../../node_modules/@angular/common/http";
+import {HttpClient, HttpHeaders} from "../../../node_modules/@angular/common/http";
 import {ActivatedRoute} from "@angular/router";
 import {QuizService} from "../../services/quiz.service";
 
@@ -24,19 +24,22 @@ export class LessonListComponent implements OnInit {
       this.chapterId = params['chapterId'];
       this.entid = params['entid'];
     });
-    this.lessonScheduleService.getLessonSchedule(this.entid,this.chapterId)
-      .subscribe((response) => {
-        if(response) {
-          console.log('response', response);
-          this.lessonData = response.body.data;
+    this.httpClient.get<any>('https://g3052kpia0.execute-api.us-east-1.amazonaws.com/dev/chapters/' + this.chapterId, {
+
+      headers: new HttpHeaders().set('accesstoken', localStorage.getItem("accessToken"))
+    }).subscribe(
+      result => {
+        // this.editChapterData = result;
+
+      //   this.lessonScheduleService.getLessonSchedule(this.entid,this.chapterId)
+      // .subscribe((response) => {
+        if(result) {
+          console.log('response', result);
+          this.lessonData = result.data;
           this.showSpinner = false;
         } else {
           alert('No any lesson is created for this chapter.');
         }
       });
-
-
-
-  }
-
+    }
 }

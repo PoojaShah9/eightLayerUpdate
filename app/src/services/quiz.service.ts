@@ -26,5 +26,8 @@ export class QuizService {
     return this.httpClient.get<any>('https://gvb0azqv1e.execute-api.us-east-1.amazonaws.com/dev/quize/listofchapter');
   }
 
+  getQuiz(chapterCode) {
+    return this.httpClient.get<any>('https://gvb0azqv1e.execute-api.us-east-1.amazonaws.com/dev/quize/listofquize?chapter_code=' + chapterCode);
+  }
 }
 
