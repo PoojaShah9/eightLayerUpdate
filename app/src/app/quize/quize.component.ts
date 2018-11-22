@@ -123,6 +123,7 @@ export class QuizeComponent implements OnInit {
       this.questionService.getQuestion(this.userID, this.chapter_no)
         .subscribe(response => {
           console.log('response',response);
+          alert('Quize not started yet');
           this.quizeQuestion = response.body;
           console.log("i am calling-------------------->",this.quizeQuestion);
           this.option = 0;

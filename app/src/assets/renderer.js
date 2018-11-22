@@ -1,5 +1,5 @@
 
-//const fs = require('fs');
+// const fs = require('fs');
 //dialog module
 // const {dialog} = require('electron').remote
 
@@ -23,18 +23,19 @@
 
 // });
 
-//const fs = require('fs');//dialog module
+
+var path = require('path');
+let filePath = path.join(__dirname, '../config/JsonInputNew.json');
 var basePath = localStorage.getItem("ExePath");
-//console.log("basePath=" + basePath);
-const { dialog } = require('electron').remote
-let path = basePath;
-fs.readFile(path, 'utf-8', (err, data) => {
+// console.log("basePath=" + basePath);
+const { dialog } = require('electron').remote;
+fs.readFile(filePath, 'utf-8', (err, data) => {
   if (err) {
-    console.log(err.message);
+    console.log('error', err.message);
     return;
   }
-  var myData = JSON.stringify(data);
+  var myData = JSON.parse(data);
   console.log("myData ", myData.eight_layer_api_url_orgId);
-  var org_id = myData.eight_layer_api_url_orgId
+  var org_id = myData.eight_layer_api_url_orgId;
   localStorage.setItem("Orgnisation_id", org_id);
 });
