@@ -42,13 +42,15 @@ function createWindow() {
   win = new BrowserWindow({
     width: 1024,
     height: 1024,
-    icon: `${__dirname}/src/assets/img/favicon/8-layer-logo-v3.png`
+    icon: `${__dirname}/src/assets/img/favicon/8-layer-logo-v3.png`,
+    webPreferences: {
+      nodeIntegration: true
+    }
   });
   win.loadURL(url.format({
     pathname: path.join(__dirname + '/dist/index.html'),
     protocol: 'file',
     slashes: true
-
   }));
 //win.loadURL(`file://${__dirname}/src/index.html`)
 //win.loadURL(`http://localhost:4200/login`)

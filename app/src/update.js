@@ -31,6 +31,6 @@ function showMessage(message, hide = true, replaceAll = false) {
       const msgEl = document.getElementById(msgId)
       msgEl.classList.remove('fadeIn')
       msgEl.classList.add('fadeOut')
-    }, 10000)
+    }, 4000)
   }
 }

@@ -1,7 +1,7 @@
 {
   "name": "eight-layer-super-admin",
   "description": "Eight layer auto updater example",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "license": "MIT",
   "main": "main.js",
   "repository": "",
@@ -12,6 +12,7 @@
     "productName": "EightLayer",
     "win": {
       "icon": "icons/icon.ico",
+
       "target": [
         "squirrel"
       ]
