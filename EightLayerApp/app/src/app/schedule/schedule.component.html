@@ -1,0 +1,175 @@
+<app-child-component></app-child-component>
+<div *ngIf="showSpinner">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<div id="main" role="main">
+  <!-- MAIN CONTENT -->
+  <div id="content">
+    <div class="row">
+      <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+        <h1 class="page-title txt-color-blueDark">
+          <i class="fa-fw fa fa-calendar"></i> Schedules</h1>
+      </div>
+    </div>
+    <section>
+      <!-- row -->
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <!-- widget content -->
+          <div class="widget-body">
+            <div class="row padding-10">
+              <div class="pull-left">
+                <label>Enterprise Name</label>
+                <select class="form-control" (change)="onEntChange($event.target.value)">
+                  <option>Select</option>
+                  <option *ngFor="let ent of Entdatas" [value]="ent.entid">{{ent.entname}}</option>
+                </select>
+              </div>
+              <div class="pull-right">
+                <label>Chapter Name</label>
+                <select class="form-control" (change)="onChapterChange($event.target)">
+                  <option>Select</option>
+                  <option *ngFor="let name of chapterName" [value]="name.chapter_code">{{name.chapters_name}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+      <!--Lesson Schedule-->
+      <div class="row">
+        <!-- NEW WIDGET START -->
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <!-- widget content -->
+          <div class="widget-body">
+            <div class="row padding-10">
+              <div class="panel panel-primary">
+                <div class="panel-heading">Lesson Schedule</div>
+                <div class="panel-body">
+                  <div class="table-responsive padding-10">
+                    <table class="table table-bordered text-left">
+                      <thead>
+                      <tr>
+                        <th>Lesson Id</th>
+                        <th>Chapter Name</th>
+                        <th>Lesson Name</th>
+                        <th>Schedule Date</th>
+                        <th>Action</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr *ngFor="let chapter of chapterData">
+                        <td>{{chapter.lesson_id}}</td>
+                        <td>{{chapter.lesson_name}}</td>
+                        <td>{{chapter.lesson_name}}</td>
+                        <td *ngIf="chapter.lesson_schedule; else addDate">{{chapter.lesson_schedule.scheduled_date}}
+                        </td>
+                        <ng-template #addDate>
+                          <td><span>-</span></td>
+                        </ng-template>
+                        <td>
+                          <i title="Add Lesson Schedule" style="cursor: pointer" (click)="addChapters(chapter)"
+                             data-toggle="modal" data-target="#lessonSchedulePopup"
+                             class="fa fa-plus"></i>
+                          &nbsp;
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!--Quize Schedule-->
+      <div class="row">
+        <!-- NEW WIDGET START -->
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <!-- widget content -->
+          <div class="widget-body">
+            <div class="row padding-10">
+              <div class="panel panel-primary">
+                <div class="panel-heading">Quize Schedule</div>
+                <div class="panel-body">
+                  <div class="table-responsive padding-10">
+                    <table class="table table-bordered text-left">
+                      <thead>
+                      <tr>
+                        <th>Lesson Id</th>
+                        <th>Chapter Name</th>
+                        <th>Lesson Name</th>
+                        <th>Schedule Date</th>
+                        <th>Action</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr *ngFor="let chapter of chapterData">
+                        <td>{{chapter.lesson_id}}</td>
+                        <td>{{chapter.lesson_name}}</td>
+                        <td>{{chapter.lesson_name}}</td>
+                        <td *ngIf="chapter.lesson_schedule; else addDate">{{chapter.lesson_schedule.scheduled_date}}
+                        </td>
+                        <ng-template #addDate>
+                          <td><span>-</span></td>
+                        </ng-template>
+                        <td>
+                          <i title="Add Lesson Schedule" style="cursor: pointer" (click)="addChapters(chapter)"
+                             data-toggle="modal" data-target="#lessonSchedulePopup"
+                             class="fa fa-plus"></i>
+                          &nbsp;
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </div>
+</div>
+
+<div id="lessonSchedulePopup" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header modal-header1">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">title</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Chapter Name</label>
+          <input type="text" class="form-control" name="chapters_name" [ngModel]="editLessonData.chapters_name">
+        </div>
+        <div class="form-group">
+          <label>Enterprise Name</label>
+          <input type="text" class="form-control" name="entid" [ngModel]="editLessonData.entid">
+        </div>
+        <div class="form-group">
+          <label>Chapter Lesson</label>
+          <div>
+            <textarea name="chapter_lesson" rows="5" cols="50" id="chapter_lesson"
+                      [ngModel]="editLessonData.chapter_lesson"></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Schedule Date</label>
+          <input type="date" class="form-control" name="scheduled_date" [ngModel]="editLessonData.scheduled_date">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="close btn btn-primary bg-color-blue"
+                style="width: 80px; height: 30px; background-color: #0c2939 !important;" data-dismiss="modal">Update
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>

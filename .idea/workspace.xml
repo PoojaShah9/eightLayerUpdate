@@ -1,0 +1,808 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="31e4b9aa-62c6-46d2-b00d-96f26518d1f4" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EightLayerApp/app/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/EightLayerApp/app/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EightLayerApp/app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/EightLayerApp/app/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EightLayerApp/app/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/EightLayerApp/app/src/index.html" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="1958725198">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="6" />
+          <entry key="project.open.time.16" value="1" />
+          <entry key="project.open.time.18" value="1" />
+          <entry key="project.open.time.3" value="1" />
+          <entry key="project.open.time.36" value="1" />
+          <entry key="project.open.time.37" value="1" />
+          <entry key="project.open.time.40" value="1" />
+          <entry key="project.open.time.42" value="1" />
+          <entry key="project.open.time.43" value="1" />
+          <entry key="project.open.time.75" value="1" />
+          <entry key="project.opened" value="9" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.js.language.service.starts">
+        <counts>
+          <entry key="Angular2LanguageService" value="8" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="html" value="445" />
+          <entry key="js" value="110" />
+          <entry key="json" value="26" />
+          <entry key="ts" value="379" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="HTML" value="445" />
+          <entry key="JSON" value="26" />
+          <entry key="JavaScript" value="110" />
+          <entry key="TypeScript" value="379" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="build" value="1" />
+          <entry key="build-optimizer" value="1" />
+          <entry key="cmd" value="3" />
+          <entry key="gitignore" value="1" />
+          <entry key="html" value="7" />
+          <entry key="js" value="1" />
+          <entry key="json" value="2" />
+          <entry key="ts" value="12" />
+          <entry key="txt" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="HTML" value="7" />
+          <entry key="JSON" value="2" />
+          <entry key="JavaScript" value="1" />
+          <entry key="PLAIN_TEXT" value="7" />
+          <entry key="TypeScript" value="12" />
+        </counts>
+      </usages-collector>
+    </session>
+    <session id="-702490066">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.16" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
+    <session id="478418743">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.3" value="1" />
+          <entry key="project.open.time.64" value="1" />
+          <entry key="project.opened" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="js" value="10" />
+          <entry key="json" value="4" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JSON" value="4" />
+          <entry key="JavaScript" value="10" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="html" value="1" />
+          <entry key="log" value="1" />
+          <entry key="ts" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="HTML" value="1" />
+          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="TypeScript" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.js.language.service.starts">
+        <counts>
+          <entry key="Angular2LanguageService" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/EightLayerApp/app/main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="247">
+              <caret line="116" column="24" selection-start-line="116" selection-start-column="24" selection-end-line="116" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/EightLayerApp/app/src/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="196">
+              <caret line="119" selection-start-line="119" selection-end-line="119" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/EightLayerApp/app/package.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="18" column="20" lean-forward="true" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/EightLayerApp/app/src/app/chapters/chapters.component.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-36">
+              <caret line="53" column="26" selection-start-line="53" selection-start-column="22" selection-end-line="53" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/EightLayerApp/app/src/app/chapters/chapters.component.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="298">
+              <caret line="277" column="34" selection-start-line="277" selection-start-column="34" selection-end-line="277" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="CSS File" />
+        <option value="TypeScript File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>alert</find>
+      <find>footer</find>
+      <find>page-footer</find>
+      <find>orgId</find>
+      <find>myQuizquestion</find>
+      <find>post</find>
+      <find>length</find>
+      <find>showAction</find>
+      <find>pagina</find>
+      <find>complete</find>
+      <find>len</find>
+      <find>quizeData</find>
+      <find>https://o9dzztjg31.execute-api.us-east-1.amazonaws.com/dev/schedules/quizzes/</find>
+      <find>myVariable</find>
+      <find>comple</find>
+      <find>disableQuestion</find>
+      <find>questionSection</find>
+      <find>hideIcon</find>
+      <find>p</find>
+      <find>comp</find>
+      <find>ngon</find>
+      <find>completed</find>
+      <find>complet</find>
+      <find>answerKey</find>
+      <find>uuid</find>
+      <find>this.queDetail</find>
+      <find>.push</find>
+      <find>ScheduledLesson</find>
+      <find>lesson</find>
+      <find>dev/reports/lessoncount/chapters</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>email</replace>
+    </replaceStrings>
+    <dirStrings>
+      <dir>C:\Users\abhik\Desktop\EightLayerApp\EightLayerApp\app\node_modules</dir>
+    </dirStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/EightLayerApp/app/src/app/site-admin-config/site-admin-config.component.html" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/src/app/site-admin-home/site-admin-home.component.html" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/src/app/questiontype1/questiontype1.component.ts" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/src/app/questiontype2/questiontype2.component.ts" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/src/app/questiontype2/questiontype2.component.html" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/src/app/questiontype1/questiontype1.component.html" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/src/app/questiontype1/questiontype1.component.css" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/src/app/questiontype2/questiontype2.component.css" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/src/assets/css/all.css" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/src/app/app.component.html" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/services/clone.service.ts" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/src/app/site-admin-alert/site-admin-alert.component.html" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/src/app/site-admin-alert/site-admin-alert.component.ts" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/server/windowService.js" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/server/server.js" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/services/notification.service.ts" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/database.sqlite3" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/src/app/login/login.component.html" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/src/app/login/login.component.ts" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/src/assets/testjs.js" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/server/eightLayerAppService.js" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/src/app/quize/quize.component.css" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/src/assets/notification.js" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/src/app/clientside/clientside.component.html" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/src/assets/css/custom.css" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/src/app/rating/rating.component.css" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/src/app/rating/rating.component.html" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/src/app/rating/rating.component.ts" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/src/app/site-admin-config/site-admin-config.component.ts" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/src/app/app.component.ts" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/src/app/quize/quize.component.ts" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/src/app/clientlessons/clientlessons.component.html" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/src/app/site-admin-side/site-admin-side.component.html" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/src/app/app.routes.ts" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/src/app/client-enterprise/client-enterprise.component.ts" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/src/services/notification.service.ts" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/src/app/schedule/schedule.component.ts" />
+        <option value="$PROJECT_DIR$/Credentials.txt" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/src/app/schedule/schedule.component.html" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/src/services/lesson-schedule.service.ts" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/src/app/chapters/chapters.component.ts" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/src/app/chapters/chapters.component.html" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/src/app/child-component/child-component.component.html" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/src/app/lessons/lessons.component.html" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/src/app/lessons/lessons.component.ts" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/src/app/app.module.ts" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/src/app/quize/quize.component.html" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/src/environments/environment.ts" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/src/index.html" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/package.json" />
+        <option value="$PROJECT_DIR$/EightLayerApp/app/main.js" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/EightLayerApp/app/node_modules" />
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths>
+      <path value="$PROJECT_DIR$/EightLayerApp/app/package.json" />
+    </packageJsonPaths>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="width" value="683" />
+    <option name="height" value="728" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="eightLayerDemo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eightLayerDemo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eightLayerDemo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eightLayerDemo" type="462c0819:PsiDirectoryNode" />
+              <item name="EightLayerApp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eightLayerDemo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eightLayerDemo" type="462c0819:PsiDirectoryNode" />
+              <item name="EightLayerApp" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eightLayerDemo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eightLayerDemo" type="462c0819:PsiDirectoryNode" />
+              <item name="EightLayerApp" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eightLayerDemo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eightLayerDemo" type="462c0819:PsiDirectoryNode" />
+              <item name="EightLayerApp" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eightLayerDemo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eightLayerDemo" type="462c0819:PsiDirectoryNode" />
+              <item name="EightLayerApp" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="chapters" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.pathVariables" />
+    <property name="ts.external.directory.path" value="E:\minal\eightLayerDemo\EightLayerApp\app\node_modules\typescript\lib" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\abhik\Desktop\Project\eight\EightLayerApp\EightLayerApp\app\src\services" />
+      <recent name="C:\Users\abhik\Desktop\Project\eight\EightLayerApp\EightLayerApp\app\src\app" />
+      <recent name="C:\Users\abhik\Desktop\EightLayerApp\EightLayerApp\app\src\services" />
+      <recent name="C:\Users\abhik\Desktop\EightLayerApp\EightLayerApp\app\src" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="31e4b9aa-62c6-46d2-b00d-96f26518d1f4" name="Default" comment="" />
+      <created>1531803437490</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1531803437490</updated>
+      <workItem from="1531803517678" duration="3608000" />
+      <workItem from="1531823914680" duration="725000" />
+      <workItem from="1531975550529" duration="10288000" />
+      <workItem from="1531988875325" duration="14968000" />
+      <workItem from="1532063485150" duration="25718000" />
+      <workItem from="1532145429854" duration="19027000" />
+      <workItem from="1532321733503" duration="10280000" />
+      <workItem from="1532338467246" duration="84000" />
+      <workItem from="1532938943577" duration="6534000" />
+      <workItem from="1533015149238" duration="9636000" />
+      <workItem from="1533026754678" duration="14462000" />
+      <workItem from="1533099881151" duration="9525000" />
+      <workItem from="1533111370930" duration="15242000" />
+      <workItem from="1533185481440" duration="9229000" />
+      <workItem from="1533203994964" duration="2114000" />
+      <workItem from="1533212838867" duration="91000" />
+      <workItem from="1533212975135" duration="2037000" />
+      <workItem from="1533272840135" duration="8924000" />
+      <workItem from="1533284772725" duration="747000" />
+      <workItem from="1533358332173" duration="2426000" />
+      <workItem from="1533365464463" duration="635000" />
+      <workItem from="1533532078986" duration="2521000" />
+      <workItem from="1533542108924" duration="578000" />
+      <workItem from="1533544952761" duration="8174000" />
+      <workItem from="1533628148246" duration="7678000" />
+      <workItem from="1533639607793" duration="3414000" />
+      <workItem from="1533643976926" duration="1770000" />
+      <workItem from="1533646075435" duration="354000" />
+      <workItem from="1533646568420" duration="766000" />
+      <workItem from="1533700981816" duration="2622000" />
+      <workItem from="1533705534932" duration="3212000" />
+      <workItem from="1533717255232" duration="282000" />
+      <workItem from="1533717585680" duration="10217000" />
+      <workItem from="1533786508003" duration="6043000" />
+      <workItem from="1533796958573" duration="1029000" />
+      <workItem from="1533803439181" duration="1227000" />
+      <workItem from="1533872708298" duration="8527000" />
+      <workItem from="1533890590096" duration="10997000" />
+      <workItem from="1533960397806" duration="1691000" />
+      <workItem from="1533983244591" duration="4754000" />
+      <workItem from="1534132061614" duration="9188000" />
+      <workItem from="1534141665449" duration="18871000" />
+      <workItem from="1534219538870" duration="2787000" />
+      <workItem from="1534223096307" duration="125000" />
+      <workItem from="1534223693174" duration="394000" />
+      <workItem from="1534495432075" duration="1099000" />
+      <workItem from="1534496799282" duration="1029000" />
+      <workItem from="1535345345553" duration="18977000" />
+      <workItem from="1535604178213" duration="716000" />
+      <workItem from="1535605185258" duration="26054000" />
+      <workItem from="1535692319452" duration="2174000" />
+      <workItem from="1535705969977" duration="632000" />
+      <workItem from="1536040974961" duration="12194000" />
+      <workItem from="1536059833154" duration="616000" />
+      <workItem from="1536382035265" duration="5087000" />
+      <workItem from="1536641609799" duration="654000" />
+      <workItem from="1536659552712" duration="1983000" />
+      <workItem from="1536734988155" duration="54000" />
+      <workItem from="1536988732220" duration="1739000" />
+      <workItem from="1537159677573" duration="1928000" />
+      <workItem from="1537163431320" duration="5972000" />
+      <workItem from="1537173161920" duration="7634000" />
+      <workItem from="1537337013053" duration="831000" />
+      <workItem from="1537346029148" duration="2776000" />
+      <workItem from="1537355573297" duration="5918000" />
+      <workItem from="1537419042224" duration="12092000" />
+      <workItem from="1537589070403" duration="10592000" />
+      <workItem from="1537606171230" duration="13858000" />
+      <workItem from="1537850863917" duration="9657000" />
+      <workItem from="1537863625713" duration="8394000" />
+      <workItem from="1538396746351" duration="2371000" />
+      <workItem from="1538543937002" duration="2763000" />
+      <workItem from="1538546888044" duration="6388000" />
+      <workItem from="1538555289499" duration="15602000" />
+      <workItem from="1538630835506" duration="23214000" />
+      <workItem from="1538715240086" duration="3825000" />
+      <workItem from="1538720557871" duration="4983000" />
+      <workItem from="1538728112489" duration="123000" />
+      <workItem from="1538728276733" duration="1984000" />
+      <workItem from="1538731486401" duration="7882000" />
+      <workItem from="1538806908515" duration="897000" />
+      <workItem from="1538808254960" duration="2867000" />
+      <workItem from="1538814937907" duration="7225000" />
+      <workItem from="1538975790217" duration="8476000" />
+      <workItem from="1538991480568" duration="1142000" />
+      <workItem from="1538998965416" duration="14000" />
+      <workItem from="1539062186860" duration="6338000" />
+      <workItem from="1539074377533" duration="4761000" />
+      <workItem from="1539079312216" duration="1249000" />
+      <workItem from="1539149096743" duration="987000" />
+      <workItem from="1539150671430" duration="4000000" />
+      <workItem from="1539161047581" duration="2590000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="535862000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4973822" visible="true" weight="0.24553572" />
+      <window_info id="Structure" order="1" sideWeight="0.5026178" side_tool="true" weight="0.24553572" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32843137" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5014881" side_tool="true" weight="0.19312602" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.4985119" visible="true" weight="0.37315875" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info anchor="bottom" id="TypeScript" order="11" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1748512" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32843137" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50074404" side_tool="true" weight="0.29575163" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49925596" visible="true" weight="0.19476268" />
+      <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="TypeScript" order="11" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/src/app/question-list/question-list.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-122" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/src/app/quize/quize.component.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="30" column="32" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/src/app/question-list/question-list.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-391" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/src/app/questiontype1/customer.interface.ts">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/src/app/questiontype1/questiontype1.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="116" column="24" lean-forward="true" selection-start-line="116" selection-start-column="24" selection-end-line="116" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/src/app/questiontype1/questiontype1.component.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/src/app/clienhome/clienhome.component.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/src/app/clientlessons/clientlessons.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="12" column="14" lean-forward="true" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/node_modules/@angular/router/router.metadata.json" />
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/src/app/clientlessons/clientlessons.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="29" column="33" lean-forward="true" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/src/app/home/home.component.ts">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/src/app/home/home.component.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/src/app/client/client.component.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/src/app/client/client.component.ts">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/src/app/all/all.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="16" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/src/app/site-admin-side/site-admin-side.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="82" column="66" lean-forward="true" selection-start-line="82" selection-start-column="34" selection-end-line="82" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/src/assets/custom-css/font-awesome.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="6" column="2473" lean-forward="true" selection-start-line="6" selection-start-column="2473" selection-end-line="6" selection-end-column="2473" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/src/app/client-enterprise/main-pipe.module.ts">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/src/app/client-enterprise/client-enterprise.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-799" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/src/app/client-enterprise/client-enterprise.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="260" column="4" selection-start-line="260" selection-start-column="4" selection-end-line="275" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/webstorm.jar!/resources/html5-schema/html5/tables.rnc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="123" column="16" selection-start-line="123" selection-start-column="16" selection-end-line="123" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/src/app/schedule/schedule.component.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/src/services/lesson-schedule.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="9" column="113" selection-start-line="9" selection-start-column="113" selection-end-line="9" selection-end-column="113" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/src/app/child-component/child-component.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/src/app/app.routes.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="28" column="46" selection-start-line="28" selection-start-column="46" selection-end-line="28" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/src/app/child-component/child-component.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="87" column="64" selection-start-line="87" selection-start-column="64" selection-end-line="87" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/src/app/schedule/schedule.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="15" selection-start-column="15" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/src/app/lessons/lessons.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="850">
+          <caret line="50" column="23" selection-start-line="50" selection-start-column="23" selection-end-line="50" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/src/app/schedule/schedule.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="13" column="18" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Credentials.txt" />
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/src/app/lessons/lessons.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="34" column="17" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/node_modules/.bin/browserslist.cmd" />
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/node_modules/.bin/build.cmd" />
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/node_modules/.bin/build-optimizer" />
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/node_modules/.bin/build-optimizer.cmd" />
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/node_modules/.bin/build" />
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/.gitignore">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/src/services/notification.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/src/app/app.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="74" column="30" selection-start-line="74" selection-start-column="30" selection-end-line="74" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/src/app/clienhome/clienhome.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-238" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/src/environments/environment.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/.angular-cli.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/src/app/quize/quize.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="38" selection-start-line="38" selection-end-line="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/src/app/quize/quize.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="11237">
+          <caret line="670" column="18" selection-start-line="670" selection-start-column="12" selection-end-line="670" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/src/app/app.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="34" column="55" selection-start-line="34" selection-start-column="55" selection-end-line="34" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/yarn-error.log" />
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/src/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="119" selection-start-line="119" selection-end-line="119" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="18" column="20" lean-forward="true" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/src/app/chapters/chapters.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-36">
+          <caret line="53" column="26" selection-start-line="53" selection-start-column="22" selection-end-line="53" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/src/app/chapters/chapters.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="277" column="34" selection-start-line="277" selection-start-column="34" selection-end-line="277" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EightLayerApp/app/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="116" column="24" selection-start-line="116" selection-start-column="24" selection-end-line="116" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

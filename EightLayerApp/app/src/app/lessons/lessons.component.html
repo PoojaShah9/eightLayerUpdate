@@ -1,0 +1,139 @@
+<app-child-component></app-child-component>
+<div *ngIf="showSpinner">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<!-- MAIN PANEL -->
+<div id="main" role="main">
+  <!-- MAIN CONTENT -->
+  <div id="content">
+    <div class="row">
+      <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+        <h1 class="page-title txt-color-blueDark"><i class="fa-fw fa fa-graduation-cap"></i> Lessons</h1>
+      </div>
+    </div>
+    <section>
+      <!-- row -->
+      <div class="row">
+        <!-- NEW WIDGET START -->
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <!-- widget content -->
+          <div class="widget-body">
+            <div class="row padding-10">
+              <div class="table-responsive padding-10">
+                <table class="table table-bordered text-center">
+                  <thead>
+                  <tr>
+                    <th></th>
+                    <th>Chapters</th>
+                    <th>Lesson Count</th>
+                    <!-- <th></th> -->
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let lessData of lessenDatas?.data; let i=index">
+                    <td>
+                      <i class="glyphicon glyphicon-plus" (click)="openCloseRow(lessenDatas.data[i])">
+                        <!--<span *ngIf="rowSelected!=i; else close">Open</span>-->
+                        <!--<ng-template #close>-->
+                          <!--<span>Close</span>-->
+                        <!--</ng-template>-->
+                      </i>
+                    </td>
+                    <td>{{lessData.chapters_name}}</td>
+                    <td>{{lessData.lesson_count}}</td>
+                    <!-- <td>
+                        <button type="button" class="btn btn-labeled btn-primary bg-color-blue">
+                            <span class="btn-label">
+                                <i class="fa fa-edit"></i>
+                            </span>Edit
+                        </button>
+                     </td> -->
+                  </tr>
+                  <tr *ngIf="rowSelected == obj.id">
+                    <td></td>
+                    <td colspan="4">
+                      <table class="table table-striped">
+                        <thead>
+                        <tr>
+                          <th style="width:15%;">Comment</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                          <td>data</td>
+                        </tr>
+                        <!--<tr *ngFor="let q of obj.comments">-->
+                          <!--<td style="width:15%;">{{q}}</td>-->
+                        <!--</tr>-->
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="m-t-10 m-r-10 text-right btn-group-box">
+                <button type="button" routerLink="/chapter" class="btn btn-labeled btn-primary">
+                                    <span class="btn-label">
+                                        <i class="fa fa-plus"></i>
+                                    </span>Chapters List
+                </button>
+                <!-- <button type="button" class="btn btn-labeled btn-primary bg-color-blue">
+                    <span class="btn-label">
+                        <i class="fa fa-edit"></i>
+                    </span>Edit
+                </button> -->
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <ng-container *ngFor="let obj of posts">
+            <tr>
+              <td>
+                <button (click)="openCloseRow(obj.id)">
+                  <span *ngIf="rowSelected!=obj.id; else close">Open</span>
+                  <ng-template #close>
+                    <span>Close</span>
+                  </ng-template>
+                </button>
+              </td>
+              <td>{{obj.date}}</td>
+              <td>
+                {{obj.subject}}
+              </td>
+              <td>{{obj.numComents}}</td>
+            </tr>
+            <tr *ngIf="rowSelected==obj.id">
+              <td></td>
+              <td colspan="4">
+                <table class="table table-striped">
+                  <thead>
+                  <tr>
+                    <th style="width:15%;">Comment</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let q of obj.comments">
+                    <td style="width:15%;">{{q}}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </ng-container>
+          <!-- end widget content -->
+        </article>
+        <!-- WIDGET END -->
+      </div>
+      <!-- end row -->
+    </section>
+
+  </div>
+  <!-- END MAIN CONTENT -->
+</div>
+<!-- END MAIN PANEL -->
+
+
