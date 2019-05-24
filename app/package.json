@@ -1,7 +1,7 @@
 {
   "name": "eight-layer-super-admin",
   "description": "Eight layer auto updater example",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "license": "MIT",
   "main": "main.js",
   "repository": "",
@@ -34,6 +34,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "dist": "build",
     "dev": "NODE_ENV=development electron .",
     "pack": "electron-builder --dir",
     "ebuild": "electron-builder",
