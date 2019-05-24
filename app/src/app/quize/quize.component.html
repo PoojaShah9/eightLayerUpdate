@@ -11,7 +11,7 @@
 
     <div id="content">
       <section>
-        <div class="row">
+        <div class="row" *ngIf="!lessonDiv">
         <div class="col-xs-12 col-sm-12 col-md-12">
           <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="panel panel-primary" *ngIf="!lessonSection">
@@ -42,7 +42,7 @@
       </section>
       <section>
         <!-- row -->
-        <div class="row">
+        <div class="row" *ngIf="!questionDiv">
           <!-- NEW WIDGET START -->
           <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <!-- widget content -->

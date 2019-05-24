@@ -83,8 +83,11 @@ export class QuizeComponent implements OnInit {
   scheduledLesson: any = [];
   availQuiz = false;
   quizScheduleId;
-  showLevel = false;
+  finalquizestatus;
+  // showLevel = false;
   duration;
+  lessonDiv = false;
+  questionDiv = true;
   constructor(private httpClient: HttpClient, private _fb: FormBuilder,
               private quizService: QuizService,
               private questionService: QuestionService,
@@ -123,31 +126,46 @@ export class QuizeComponent implements OnInit {
       this.questionService.getQuestion(this.userID, this.chapter_no)
         .subscribe(response => {
           console.log('response',response);
-          alert('Quize not started yet');
+          if (response.body.data.length <= 0) {
+            alert('Quize not started yet');
+          }
           this.quizeQuestion = response.body;
           console.log("i am calling-------------------->",this.quizeQuestion);
-          this.option = 0;
-          this.currentType = this.quizeQuestion.data[0].question_type;
-          this.currentChapterCode = this.quizeQuestion.data[0].chapter_code;
-          /*start show lessons*/
-
-          if (this.currentType == "1") {
-
-            this.isValid = true;
+          this.finalquizestatus = this.quizeQuestion.finalquizestatus;
+          console.log("finalquizestatus",this.finalquizestatus);
+          if (this.finalquizestatus === 1) {
+            alert('You are completed this week quiz');
+            this.lessonDiv = false;
+            this.questionDiv = true;
+            this.showSpinner = false;
+            this.lessonSection = false;
           } else {
-            this.isValid = false;
+            this.lessonDiv = true;
+            this.questionDiv = false;
+            this.option = 0;
+            this.currentType = this.quizeQuestion.data[0].question_type ? this.quizeQuestion.data[0].question_type : '';
+            this.currentChapterCode = this.quizeQuestion.data[0].chapter_code;
+            /*start show lessons*/
+
+            if (this.currentType == "1") {
+
+              this.isValid = true;
+            } else {
+              this.isValid = false;
+            }
+
+            for (data in this.quizeQuestion.data[0].question_options) {
+              this.option = this.option + 1;
+              this.answerData[this.option - 1] = this.quizeQuestion.data[0].question_options[this.option - 1].name
+            }
+
+            /*this is give the answer*/
+
+            this.Qlength = this.quizeQuestion.data.length;
+            this.myQuizquestion = this.quizeQuestion.data[0].question;
+            this.showSpinner = false;
           }
 
-          for (data in this.quizeQuestion.data[0].question_options) {
-            this.option = this.option + 1;
-            this.answerData[this.option - 1] = this.quizeQuestion.data[0].question_options[this.option - 1].name
-          }
-
-          /*this is give the answer*/
-
-          this.Qlength = this.quizeQuestion.data.length;
-          this.myQuizquestion = this.quizeQuestion.data[0].question;
-          this.showSpinner = false;
         });
       // this.httpClient.get('https://o9dzztjg31.execute-api.us-east-1.amazonaws.com/dev/schedules/questions/' + this.entId + '/' + quizScheduleId + '',
       //   {
@@ -200,7 +218,7 @@ export class QuizeComponent implements OnInit {
         // this.Qlength = this.quizeQuestion.data.length;
         // this.myQuizquestion = this.quizeQuestion.data[0].question;
         //this.quizStatus = "Running"
-        this.showSpinner = false;
+        // this.showSpinner = false;
       // }, (error: any) => {
       //   console.log("error in inner = " + error.message);
       // })
@@ -291,12 +309,7 @@ export class QuizeComponent implements OnInit {
       this.quizStatus = "Complete";
       let changeStatus = {
         "quiz_schedule_id": this.QuizScheduleId,
-        "entid": parseInt(this.entId),
-        "lessons_included": this.chapterCode,
-        "quiz_status": 0,
-        "scheduled_date": this.quizeDate,
-        "duration": this.duration,
-        "chapter_name": this.lesson_Name
+        "userid": this.userID
       };
       console.log('changeStatus', changeStatus);
       this.httpClient.post('https://gvb0azqv1e.execute-api.us-east-1.amazonaws.com/dev/changequizestatus', changeStatus)
@@ -312,28 +325,37 @@ export class QuizeComponent implements OnInit {
           this.questionDisable = true;
         }
       }
-      this.myQuizquestion = this.quizeQuestion.data[this.count].question
-      //for options
-      this.myIndex = !this.myIndex
-      this.answerData = [];
-      this.option = 0
+      if(this.finalquizestatus === 0) {
+        this.lessonDiv = true;
+        this.questionDiv = false;
+        this.myQuizquestion = this.quizeQuestion.data[this.count].question
+        //for options
+        this.myIndex = !this.myIndex
+        this.answerData = [];
+        this.option = 0
 
-      this.currentType = this.quizeQuestion.data[this.count].question_type;
+        this.currentType = this.quizeQuestion.data[this.count].question_type;
 
-      if (this.currentType == "1") {
+        if (this.currentType == "1") {
 
-        this.isValid = true
+          this.isValid = true
+
+        } else {
+
+          this.isValid = false
+        }
+        for (let data in this.quizeQuestion.data[this.count].question_options) {
+
+          this.option = this.option + 1;
+          this.answerData[this.option - 1] = this.quizeQuestion.data[this.count].question_options[this.option - 1].name
+
+        }
 
       } else {
-
-        this.isValid = false
+        this.lessonDiv = false;
+        this.questionDiv = true;
       }
-      for (let data in this.quizeQuestion.data[this.count].question_options) {
 
-        this.option = this.option + 1;
-        this.answerData[this.option - 1] = this.quizeQuestion.data[this.count].question_options[this.option - 1].name
-
-      }
 
     }
 
@@ -464,20 +486,15 @@ export class QuizeComponent implements OnInit {
             this.currectAnswer = [];
             this.currectAnswer = null;
             for (let ans in this.currectAnswerdata.data[0].answer) {
-
               this.currectAnswer = this.currectAnswerdata.data[0].answer[ans]
             }
-
             if (this.currectAnswer == this.currentAns) {
-
               this.message = "Correct Answer"
               this.currentAns = [];
             } else {
-
               this.message = "Incorrect Answer"
               this.currentAns = [];
             }
-
 
           }, (error: any) => {
 
@@ -708,16 +725,19 @@ export class QuizeComponent implements OnInit {
 
   hideQuizepopUp() {
     this.redClassBool = true;
-    this.showLevel = false;
+    // this.showLevel = false;
   }
 
   ratingComponentClick(clickObj: any): void {
+    this.showSpinner = true;
     this.ratingClicked = clickObj;
     this.userID = localStorage.getItem("Updated_user_id");
     this.entId = localStorage.getItem("enterpriseId");
+    console.log('this.chapterCode[0]', this.chapterCode[0]);
+    console.log('this.quizeData', this.QuizScheduleId);
     let obj = {
-      "user_quiz_accessed_id": this.quizeData.data[0].quiz_schedule_id,
-      "user_lesson_accessed_id": this.quizeData.data[0].lessons_included[0],
+      "user_quiz_accessed_id": this.QuizScheduleId,
+      "user_lesson_accessed_id": this.chapterCode[0],
       "entid": parseInt(this.entId),
       "userid": this.userID,
       "lesson_rating": this.ratingClicked.rating,
@@ -725,11 +745,12 @@ export class QuizeComponent implements OnInit {
     };
     this.httpClient.post('https://gvb0azqv1e.execute-api.us-east-1.amazonaws.com/dev/rating', obj)
       .subscribe(data => {
+        this.showSpinner = false;
         alert('Thank you for rating..');
       });
     if (this.ratingClicked.submit === true) {
       this.ratingModelShow = false;
-      this.showLevel = true;
+      // this.showLevel = true;
     }
 
   }

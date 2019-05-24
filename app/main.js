@@ -3,20 +3,23 @@ const {app, BrowserWindow, Tray, ipcMain, Menu} = require('electron')
 var url = require('url');
 var path = require('path');
 var AutoLaunch = require('auto-launch');
-const {autoUpdater} = require("electron-updater");
+// const {autoUpdater} = require("electron-updater");
 const log = require('electron-log');
 // window.ipcRenderer = require('electron').ipcRenderer;
 let tray = null;
 let win;
 // SQLite
 let server = require('./server/eightLayerAppService');
+
+const autoUpdater = require('./auto-updater')
+if (require('electron-squirrel-startup')) electron.app.quit()
 var autoLauncher = new AutoLaunch({
   name: 'eight-layer-super-admin',
   path: app.getPath('exe'),
 });
 
-autoUpdater.logger = log;
-autoUpdater.logger.transports.file.level = 'info';
+// autoUpdater.logger = log;
+// autoUpdater.logger.transports.file.level = 'info';
 log.info('App starting...');
 
 autoLauncher.enable();
@@ -68,6 +71,9 @@ function createWindow() {
   console.log("process.argv = " + process.argv0);
   global.sharedObject = {prop1: process.argv0};
 
+  win.webContents.on('did-finish-load', () => {
+    autoUpdater.init(win)
+  })
 // Event when the window is closed.
   win.on('closed', function () {
     win = null;
@@ -102,7 +108,7 @@ function sendStatusToWindow(text) {
   win.webContents.send('message', text);
 }
 
-autoUpdater.on('checking-for-update', () => {
+/*autoUpdater.on('checking-for-update', () => {
   sendStatusToWindow('Checking for update...');
 })
 autoUpdater.on('update-available', (info) => {
@@ -122,9 +128,9 @@ autoUpdater.on('download-progress', (progressObj) => {
 })
 autoUpdater.on('update-downloaded', (info) => {
   sendStatusToWindow('Update downloaded');
-});
+});*/
 app.on('ready', function () {
-  autoUpdater.checkForUpdatesAndNotify();
+  // autoUpdater.checkForUpdatesAndNotify();
 });
 
 ipcMain.on('show-about-window-event', function () {
