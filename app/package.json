@@ -1,7 +1,7 @@
 {
   "name": "eight-layer-super-admin",
   "description": "Eight layer auto updater example",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "license": "MIT",
   "main": "main.js",
   "repository": "",
@@ -10,6 +10,7 @@
   "build": {
     "appId": "com.hyden.autoupdate",
     "productName": "EightLayer",
+    "asar": false,
     "win": {
       "icon": "icons/icon.ico",
 
@@ -20,6 +21,11 @@
     "squirrelWindows": {
       "iconUrl": "https://raw.githubusercontent.com/matiastucci/electron-auto-updater-example/master/icons/icon.ico"
     },
+    "files": [
+      "*.js",
+      "build",
+      "node_modules"
+    ],
     "publish": [
       {
         "provider": "github",
