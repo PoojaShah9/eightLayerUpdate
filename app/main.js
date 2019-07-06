@@ -1,5 +1,5 @@
 //import { file } from '../.cache/typescript/2.6/node_modules/@types/babel-types';
-const {app, BrowserWindow, Tray, ipcMain, Menu} = require('electron')
+const {app, BrowserWindow, Tray, ipcMain, Menu} = require('electron');
 var url = require('url');
 var path = require('path');
 var AutoLaunch = require('auto-launch');
@@ -9,10 +9,11 @@ const log = require('electron-log');
 let tray = null;
 let win;
 // SQLite
-let server = require('./server/eightLayerAppService');
-
-const autoUpdater = require('./auto-updater')
-if (require('electron-squirrel-startup')) electron.app.quit()
+let server = require('./src/assets/server/eightLayerAppService');
+const autoUpdater = require('./auto-updater');
+if (require('electron-squirrel-startup')) {
+  electron.app.quit();
+}
 var autoLauncher = new AutoLaunch({
   name: 'eight-layer-super-admin',
   path: app.getPath('exe'),
@@ -43,9 +44,6 @@ function createWindow() {
     width: 1024,
     height: 1024,
     icon: `${__dirname}/src/assets/img/favicon/8-layer-logo-v3.png`,
-    webPreferences: {
-      nodeIntegration: true
-    }
   });
   win.loadURL(url.format({
     pathname: path.join(__dirname + '/dist/index.html'),
@@ -60,7 +58,7 @@ function createWindow() {
   tray.setToolTip('EightLayerApp');
   tray.on('click', () => {
     win.isVisible() ? win.hide() : win.show()
-  })
+  });
   var contextMenu = Menu.buildFromTemplate([{
     label: 'Quit', click: function () {
       app.isQuiting = true;
@@ -75,7 +73,7 @@ function createWindow() {
 
   win.webContents.on('did-finish-load', () => {
     autoUpdater.init(win)
-  })
+  });
 // Event when the window is closed.
   win.on('closed', function () {
     win = null;
@@ -93,7 +91,7 @@ app.on('window-all-closed', function () {
     // win.hide();
     app.quit()
   }
-})
+});
 app.on('activate', function () {
 // macOS specific close process
   if (win === null) {
@@ -110,27 +108,6 @@ function sendStatusToWindow(text) {
   win.webContents.send('message', text);
 }
 
-/*autoUpdater.on('checking-for-update', () => {
-  sendStatusToWindow('Checking for update...');
-})
-autoUpdater.on('update-available', (info) => {
-  sendStatusToWindow('Update available.');
-})
-autoUpdater.on('update-not-available', (info) => {
-  sendStatusToWindow('Update not available.');
-})
-autoUpdater.on('error', (err) => {
-  sendStatusToWindow('Error in auto-updater. ' + err);
-})
-autoUpdater.on('download-progress', (progressObj) => {
-  let log_message = "Download speed: " + progressObj.bytesPerSecond;
-  log_message = log_message + ' - Downloaded ' + progressObj.percent + '%';
-  log_message = log_message + ' (' + progressObj.transferred + "/" + progressObj.total + ')';
-  sendStatusToWindow(log_message);
-})
-autoUpdater.on('update-downloaded', (info) => {
-  sendStatusToWindow('Update downloaded');
-});*/
 app.on('ready', function () {
   // autoUpdater.checkForUpdatesAndNotify();
 });

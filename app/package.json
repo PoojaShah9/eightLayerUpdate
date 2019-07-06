@@ -4,33 +4,22 @@
   "version": "0.0.9",
   "license": "MIT",
   "main": "main.js",
-  "repository": "",
   "postinstall": "electron-builder install-app-deps",
   "author": "Hyden",
   "build": {
     "appId": "com.hyden.autoupdate",
     "productName": "EightLayer",
-    "asar": false,
     "win": {
       "icon": "icons/icon.ico",
-
-      "target": [
-        "squirrel"
-      ]
+      "target": "NSIS"
     },
     "squirrelWindows": {
       "iconUrl": "https://raw.githubusercontent.com/matiastucci/electron-auto-updater-example/master/icons/icon.ico"
     },
-    "files": [
-      "*.js",
-      "build",
-      "node_modules"
-    ],
-    "publish": [
-      {
+    "publish": [{
         "provider": "github",
         "owner": "PoojaShah9",
-        "repo": "eightLayerDemo"
+        "repo": "eightLayerUpdate"
       }
     ]
   },
@@ -38,11 +27,12 @@
     "ng": "ng",
     "start": "electron .",
     "build": "ng build",
+    "dist": "build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "dev": "NODE_ENV=development electron .",
-    "pack": "electron-builder --dir",
+    "pack": "build --dir",
     "ebuild": "electron-builder",
     "electron": "electron .",
     "electron-build": "ng build --prod && electron .",

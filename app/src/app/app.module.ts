@@ -28,7 +28,7 @@ import { Questiontype1Component } from './questiontype1/questiontype1.component'
 import {QuestionListComponent, UniquePipe} from './question-list/question-list.component';
 import { Questiontype2Component } from './questiontype2/questiontype2.component';
 import { ClientsideComponent } from './clientside/clientside.component';
-//import { ClienhomeComponent } from './clienhome/clienhome.component';
+import { ClienhomeComponent } from './clienhome/clienhome.component';
 import { QuizeComponent } from './quize/quize.component';
 import { ClientlessonsComponent } from './clientlessons/clientlessons.component';
 import { SiteAdminSideComponent } from './site-admin-side/site-admin-side.component';
@@ -67,7 +67,7 @@ declare var $: any;
     QuestionListComponent,
     Questiontype2Component,
     ClientsideComponent,
-    //ClienhomeComponent,
+    ClienhomeComponent,
     QuizeComponent,
     ClientlessonsComponent,
     SiteAdminSideComponent,
