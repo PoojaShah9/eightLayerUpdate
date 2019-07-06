@@ -1,7 +1,7 @@
 {
   "name": "eight-layer-super-admin",
   "description": "Eight layer auto updater example",
-  "version": "0.0.9",
+  "version": "0.0.9.1",
   "license": "MIT",
   "main": "main.js",
   "postinstall": "electron-builder install-app-deps",

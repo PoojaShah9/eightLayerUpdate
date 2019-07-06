@@ -46,7 +46,7 @@ function createWindow() {
     icon: `${__dirname}/src/assets/img/favicon/8-layer-logo-v3.png`,
   });
   win.loadURL(url.format({
-    pathname: path.join(__dirname + '/dist/index.html'),
+    pathname: path.join(__dirname, '/dist/eightLayer/index.html'),
     protocol: 'file',
     slashes: true
   }));
