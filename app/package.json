@@ -88,7 +88,7 @@
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "~6.0.60",
     "codelyzer": "^4.0.1",
-    "electron": "^1.8.8",
+    "electron": "^15.5.5",
     "electron-builder": "^20.38.3",
     "electron-packager": "^12.1.0",
     "jasmine-core": "~2.6.2",
